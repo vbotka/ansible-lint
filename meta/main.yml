@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: ansible_lint
   author: Vladimir Botka
   description: Install and configure Ansible Lint.
   company: https://botka.link
