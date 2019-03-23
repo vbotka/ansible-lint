@@ -1,0 +1,42 @@
+---
+# vars for ansible_lint
+
+# mal_rulesdir:
+#   - /usr/local/src/ansible-lint/lib/ansiblelint/rules/
+#   - ./rule/directory/
+# mal_exclude_paths:
+#   - ./my/excluded/directory/
+#   - ./my/other/excluded/directory/
+#   - ./last/excluded/directory/
+# mal_skip_list:
+#   - skip_this_tag
+#   - and_this_one_too
+#   - skip_this_id
+#   - '401'
+# mal_tags:
+#   - run_this_tag
+
+# mal_config:
+#   - path: "/usr/local/etc/ansible/.ansible-lint"
+#     template: ansible-lint-default.j2
+#     owner: "root"
+#     group: "adm"
+#     mode: "0644"
+#     config:
+#       verbosity: 0
+#       quiet: true
+#       parseable: true
+#       use_default_rules: true
+#       exclude_paths: "{{ mal_exclude_paths }}"
+#       rulesdir: "{{ mal_rulesdir }}"
+#       skip_list: "{{ mal_skip_list }}"
+#       tags: "{{ mal_tags }}"
+
+# mal_links:
+#   - {src: "{{ mal_github_dest }}/ansible-lint/bin/ansible-lint",
+#      dest: "/home/admin/bin/ansible-lint"}
+#   - {src: "{{ mal_github_dest }}/ansible-lint/lib/ansiblelint/rules",
+#      dest: "/home/admin/.ansible/ansible-lint-rules"}
+
+# EOF
+...

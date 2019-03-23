@@ -1,0 +1,8 @@
+---
+# FreeBSD vars for ansible_lint
+
+mal_packages:
+  - sysutils/py-ansible-lint
+
+# EOF
+...

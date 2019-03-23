@@ -1,0 +1,33 @@
+# {{ ansible_managed }} 
+# template: {{ item.template }}
+
+verbosity: {{ item.config.verbosity|default('1') }}
+quiet: {{ item.config.quiet|default('true') }}
+parseable: {{ item.config.parseable|default('true') }}
+use_default_rules: {{ item.config.use_default_rules|default('true') }}
+{% for path in item.config.exclude_paths|default([]) %}
+{% if loop.first %}
+exclude_paths:
+{% endif %}
+  - {{ path }}
+{% endfor %}
+{% for path in item.config.rulesdir|default([]) %}
+{% if loop.first %}
+rulesdir:
+{% endif %}
+  - {{ path }}
+{% endfor %}
+{% for skip in item.config.skip_list|default([]) %}
+{% if loop.first %}
+skip_list:
+{% endif %}
+  - {{ skip }}
+{% endfor %}
+{% for tag in item.config.tags|default([]) %}
+{% if loop.first %}
+tags:
+{% endif %}
+  - {{ tag }}
+{% endfor %}
+
+# EOF

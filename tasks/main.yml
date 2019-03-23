@@ -1,0 +1,26 @@
+---
+# tasks for ansible_lint
+
+- import_tasks: vars.yml
+  tags: [mal_vars, always]
+
+- import_tasks: debug.yml
+  when: mal_debug
+  tags: [mal_debug, always]
+
+- import_tasks: packages.yml
+  when: mal_packages_install
+  tags: mal_packages
+
+- import_tasks: github.yml
+  when: mal_github_install
+  tags: mal_github
+
+- import_tasks: links.yml
+  tags: mal_links
+
+- import_tasks: config.yml
+  tags: mal_config
+
+# EOF
+...

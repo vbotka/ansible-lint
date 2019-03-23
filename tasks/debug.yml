@@ -1,0 +1,41 @@
+---
+
+- name: "debug: Ansible Lint"
+  vars:
+    msg: |
+      ansible_os_family [ {{ ansible_os_family }} ]
+      ansible_distribution [ {{ ansible_distribution }} ]
+      ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
+      ansible_distribution_version [ {{ ansible_distribution_version }} ]
+      ansible_distribution_release [ {{ ansible_distribution_release }} ]
+
+      mal_backup_conf [ {{ mal_backup_conf }} ]
+
+      mal_packages_install [ {{ mal_packages_install }} ]
+      mal_packages
+      {{ mal_packages | to_nice_yaml }}
+      freebsd_install_method [ {{ freebsd_install_method }} ]
+      freebsd_use_packages [ {{ freebsd_use_packages }} ]
+      freebsd_install_retries [ {{ freebsd_install_retries }} ]
+      freebsd_install_delay [ {{ freebsd_install_delay }} ]
+      linux_install_retries [ {{ linux_install_retries }} ]
+      linux_install_delay [ {{ linux_install_delay }} ]
+
+      mal_github_install [ {{ mal_github_install }} ]
+      mal_github_version [ {{ mal_github_version }} ]
+      mal_github_checksum [ {{ mal_github_checksum }} ]
+      mal_github_file [ {{ mal_github_file }} ]
+      mal_github_dir [ {{ mal_github_dir }} ]
+      mal_github_url [ {{ mal_github_url }} ]
+      mal_github_dest [ {{ mal_github_dest }} ]
+
+      mal_links
+      {{ mal_links | to_yaml }}
+      mal_config
+      {{ mal_config | to_yaml }}
+
+  debug:
+    msg: "{{ msg.split('\n') }}"
+
+# EOF
+...

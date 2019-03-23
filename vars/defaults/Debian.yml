@@ -1,0 +1,8 @@
+---
+# Debian vars for ansible_lint
+
+mal_packages:
+  - ansible-lint
+
+# EOF
+...

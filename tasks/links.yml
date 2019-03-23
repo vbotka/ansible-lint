@@ -1,0 +1,11 @@
+---
+
+- name: "links: Create links"
+  file:
+    state: link
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop: "{{ mal_links }}"
+
+# EOF
+...
