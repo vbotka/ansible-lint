@@ -27,8 +27,7 @@ To download tarball from GitHub, extract and link it set
 mal_github_install: true
 ```
 
-Os specific custom variables put into the directory /vars. Review
-/tasks/vars.yml to learn the variables' precedece.
+Put OS specific custom variables into the directory /vars. Review /tasks/vars.yml to learn the recedece of the variables.
 
 (TBD). Review the defaults and examples in vars.
 
