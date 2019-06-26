@@ -1,7 +1,7 @@
 Ansible Lint
 ============
 
-[![Build Status](https://travis-ci.org/vbotka/ansible-ansible_lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-ansible_lint)
+[![Build Status](https://travis-ci.org/vbotka/ansible-lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-lint)
 
 [Ansible role](https://galaxy.ansible.com/vbotka/ansible_lint/). Install and configure *Ansible Lint*.
 
