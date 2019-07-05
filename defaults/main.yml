@@ -4,17 +4,19 @@
 mal_debug: false
 mal_backup_conf: false
 
-# packages
+# Packages
 mal_packages_install: true
+# FreeBSD
 freebsd_install_method: "packages"
 # freebsd_install_method: "ports"
-freebsd_use_packages: "yes"
+freebsd_use_packages: true
 freebsd_install_retries: 10
 freebsd_install_delay: 5
+# Linux
 linux_install_retries: 10
 linux_install_delay: 5
 
-# github
+# Github
 mal_github_install: false
 mal_github_version: "4.1.0"
 mal_github_checksum: "sha1:4b6a4b1ce7cd5fe1659b31d76ce182bc199123c2"
@@ -23,10 +25,10 @@ mal_github_dir: "ansible-lint-{{ mal_github_version }}"
 mal_github_url: "https://github.com/ansible/ansible-lint/archive"
 mal_github_dest: "/usr/local/src"
 
-# config
+# Configuration
 mal_config: []
 
-# links
+# Links
 mal_links: []
 
 # EOF
