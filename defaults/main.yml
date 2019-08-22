@@ -16,10 +16,13 @@ freebsd_install_delay: 5
 linux_install_retries: 10
 linux_install_delay: 5
 
-# Github
-mal_github_install: false
+# Github version
+# mal_github_version: "4.1.1a0"
+# mal_github_checksum: "sha1:e397883c8747053b4889fa35aed640daa81e02c5"
 mal_github_version: "4.1.0"
 mal_github_checksum: "sha1:4b6a4b1ce7cd5fe1659b31d76ce182bc199123c2"
+# Github
+mal_github_install: false
 mal_github_file: "v{{ mal_github_version }}.tar.gz"
 mal_github_dir: "ansible-lint-{{ mal_github_version }}"
 mal_github_url: "https://github.com/ansible/ansible-lint/archive"
