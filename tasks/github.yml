@@ -42,5 +42,12 @@
     force: true
   tags: mal_github_link
 
+- name: "github: Install with pip"
+  pip:
+    name: "{{ mal_github_dest }}/ansible-lint-{{ mal_github_file }}"
+    executable: "{{ mal_pip_executable }}"
+  when: mal_github_fetched.stat.exists
+  tags: mal_github_install
+
 # EOF
 ...

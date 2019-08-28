@@ -16,6 +16,9 @@ freebsd_install_delay: 5
 linux_install_retries: 10
 linux_install_delay: 5
 
+# pip
+mal_pip_executable: pip3
+
 # Github version
 # mal_github_version: "4.1.1a0"
 # mal_github_checksum: "sha1:e397883c8747053b4889fa35aed640daa81e02c5"
