@@ -3,7 +3,8 @@
 # FreeBSD
 - name: "packages: Install Ansible Lint packages FreeBSD"
   pkgng:
-    name: "{{ mal_packages }}"
+    name: "{{ item.name }}"
+  loop: "{{ mal_packages }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
