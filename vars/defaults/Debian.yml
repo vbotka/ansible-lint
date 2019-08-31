@@ -2,7 +2,15 @@
 # Debian vars for ansible_lint
 
 mal_packages:
-  - ansible-lint
+  - name: 'ansible-lint'
+
+mal_pip_executable: "/home/{{ mal_owner }}/.local/bin/pip2"
+
+# Set empty in defaults. Should be customized. Probably in host_vars.
+# mal_links:
+#   - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
+#    dest: "/home/{{ mal_owner }}/bin/ansible-lint"
+#    force: true
 
 # EOF
 ...

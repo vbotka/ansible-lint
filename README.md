@@ -24,7 +24,7 @@ mal_packages_install: true
 To download tarball from GitHub, extract and link it set
 
 ```
-mal_github_install: true
+mal_source_install: true
 ```
 
 Put OS specific custom variables into the directory /vars. Review /tasks/vars.yml to learn the precedence of the variables.

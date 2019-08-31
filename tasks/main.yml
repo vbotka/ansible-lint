@@ -12,9 +12,9 @@
   when: mal_packages_install
   tags: mal_packages
 
-- import_tasks: github.yml
-  when: mal_github_install
-  tags: mal_github
+- import_tasks: source.yml
+  when: mal_source_install
+  tags: mal_source
 
 - import_tasks: links.yml
   tags: mal_links

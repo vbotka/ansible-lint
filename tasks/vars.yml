@@ -1,5 +1,10 @@
 ---
 
+- name: "Declare mal_owner when undefined"
+  when: mal_owner is undefined
+  set_fact:
+    mal_owner: "{{ ansible_user }}"
+
 - name: "vars: Default vars for
                {{ ansible_os_family }}
                {{ ansible_distribution }}

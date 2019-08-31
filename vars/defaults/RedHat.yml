@@ -2,7 +2,9 @@
 # RedHat vars for ansible_lint
 
 mal_packages:
-  - ansible-lint
+  - name: 'ansible-lint'
+
+mal_pip_executable: 'pip2'
 
 # EOF
 ...

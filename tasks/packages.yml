@@ -1,5 +1,6 @@
 ---
 
+# FreeBSD
 - name: "packages: Install Ansible Lint packages FreeBSD"
   pkgng:
     name: "{{ mal_packages }}"
@@ -13,7 +14,7 @@
 
 - name: "packages: Install Ansible Lint ports FreeBSD"
   portinstall:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     use_packages: "{{ freebsd_use_packages }}"
   loop: "{{ mal_packages }}"
   register: result
@@ -24,16 +25,79 @@
     - ansible_os_family == "FreeBSD"
     - freebsd_install_method|lower == "ports"
 
+# Linux
 - name: "packages: Install Ansible Lint packages Linux"
+  when: ansible_os_family == "RedHat"
   package:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
   loop: "{{ mal_packages }}"
   register: result
   retries: "{{ linux_install_retries }}"
-  until: result is succeeded
   delay: "{{ linux_install_delay }}"
-  when: (ansible_os_family == "Debian") or
-        (ansible_os_family == "RedHat")
+  until: result is succeeded
+
+# pip
+- name: "packages: Test {{ mal_pip_executable }} exists"
+  block:
+    - name: "packages: Stat {{ mal_pip_executable }}"
+      stat:
+        path: "{{ mal_pip_executable }}"
+      register: result
+    - name: "packages: Not exists {{ mal_pip_executable }}"
+      when: not result.stat.exists
+      debug:
+        msg: "[ERROR] {{ mal_pip_executable }} does not exist. End of host."
+    - name: "packages: Meta end host"
+      when: not result.stat.exists
+      meta: end_host
+  when: ansible_os_family == "Debian"
+
+- name: "packages: Install Ansible Lint pip packages for {{ mal_owner }}"
+  become_user: "{{ mal_owner }}"
+  become: true
+  changed_when: false  # Note 1.
+  pip:
+    name: "{{ item.name }}"
+    executable: "{{ mal_pip_executable }}"
+    version: "{{ item.version|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    extra_args: "{{ pip_extraagrs|default(omit) }}"
+  loop: "{{ mal_packages }}"
+  register: result
+  retries: "{{ pip_install_retries }}"
+  delay: "{{ pip_install_delay }}"
+  until: result is succeeded
+  when: ansible_os_family == "Debian"
+
+- name: "packages: Debug pip packages"
+  when: mal_debug|bool
+  debug:
+    var: result
+
+- name: "packages: Install Ansible Lint pip requirements for {{ mal_owner }}"
+  become_user: "{{ mal_owner }}"
+  become: true
+  changed_when: false  # Note 1.
+  pip:
+    requirements: "{{ mal_pip_requirements|default(omit) }}"
+    executable: "{{ mal_pip_executable }}"
+    extra_args: "{{ pip_extraagrs|default(omit) }}"
+  register: result
+  retries: "{{ pip_install_retries }}"
+  delay: "{{ pip_install_delay }}"
+  until: result is succeeded
+  when:
+    - ansible_os_family == "Debian"
+    - pip_requirements is defined
+
+- name: "packages: Debug pip requirements"
+  when: mal_debug|bool
+  debug:
+    var: result
+
+# Note 1.
+# The pip module isn't always idempotent #28952
+# https://github.com/ansible/ansible/issues/28952
 
 # EOF
 ...
