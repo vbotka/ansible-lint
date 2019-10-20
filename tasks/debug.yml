@@ -19,10 +19,10 @@
 
       pip_install_retries [{{ pip_install_retries }}]
       pip_install_delay [{{ pip_install_delay }}]
-      pip_extraagrs [{{ pip_extraagrs|default('ABSENT') }}]
+      pip_extraagrs [{{ pip_extraagrs|default('UNDEFINED') }}]
 
       mal_pip_executable [{{ mal_pip_executable }}]
-      mal_pip_requirements [{{ mal_pip_requirements|default('ABSENT') }}]
+      mal_pip_requirements [{{ mal_pip_requirements|default('UNDEFINED') }}]
 
       mal_source_install [{{ mal_source_install }}]
       mal_source_version [{{ mal_source_version }}]
@@ -32,7 +32,7 @@
       mal_source_url [{{ mal_source_url }}]
       mal_source_dest [{{ mal_source_dest }}]
 
-      ansible_user [{{ ansible_user }}]
+      ansible_user_id [{{ ansible_user_id }}]
 
       mal_owner [{{ mal_owner }}]
       mal_backup_conf [{{ mal_backup_conf }}]

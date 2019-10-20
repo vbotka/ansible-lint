@@ -3,7 +3,7 @@
 - name: "Declare mal_owner when undefined"
   when: mal_owner is undefined
   set_fact:
-    mal_owner: "{{ ansible_user }}"
+    mal_owner: "{{ ansible_user_id }}"
 
 - name: "vars: Default vars for
                {{ ansible_os_family }}
@@ -16,6 +16,7 @@
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
         - "defaults.yml"
+        - "default.yml"
       paths: '{{ role_path }}/vars/defaults'
 
 - name: "vars: Custom vars for
@@ -29,6 +30,7 @@
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
         - "defaults.yml"
+        - "default.yml"
       paths: '{{ role_path }}/vars'
 
 # EOF

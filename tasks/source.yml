@@ -2,7 +2,7 @@
 
 - name: "source: Create directory for the source code {{ mal_source_dest }}"
   file:
-    state: directory
+    state: "directory"
     path: "{{ mal_source_dest }}"
   tags: mal_source_fetch
 
@@ -36,7 +36,7 @@
 
 - name: "source: Create symbolic links"
   file:
-    state: link
+    state: "link"
     src: "{{ mal_source_dest }}/{{ mal_source_dir }}"
     dest: "{{ mal_source_dest }}/ansible-lint"
     force: true

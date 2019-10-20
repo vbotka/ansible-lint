@@ -5,15 +5,15 @@
   tags: [mal_vars, always]
 
 - import_tasks: debug.yml
-  when: mal_debug
+  when: mal_debug|bool
   tags: [mal_debug, always]
 
 - import_tasks: packages.yml
-  when: mal_packages_install
+  when: mal_packages_install|bool
   tags: mal_packages
 
 - import_tasks: source.yml
-  when: mal_source_install
+  when: mal_source_install|bool
   tags: mal_source
 
 - import_tasks: links.yml
