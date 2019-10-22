@@ -9,7 +9,7 @@
   tags: [mal_debug, always]
 
 - import_tasks: packages.yml
-  when: mal_packages_install|bool
+  when: mal_install|bool
   tags: mal_packages
 
 - import_tasks: source.yml

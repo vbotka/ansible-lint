@@ -1,5 +1,7 @@
 ---
 
+# packages -----------------------------------------------------------
+
 # FreeBSD
 - name: "packages: Install Ansible Lint packages FreeBSD"
   pkgng:
@@ -10,6 +12,7 @@
   retries: "{{ freebsd_install_retries }}"
   delay: "{{ freebsd_install_delay }}"
   when:
+    - not mal_pip_install
     - ansible_os_family == "FreeBSD"
     - freebsd_install_method|lower == "packages"
 
@@ -23,12 +26,16 @@
   retries: "{{ freebsd_install_retries }}"
   delay: "{{ freebsd_install_delay }}"
   when:
+    - not mal_pip_install
     - ansible_os_family == "FreeBSD"
     - freebsd_install_method|lower == "ports"
 
 # Linux
 - name: "packages: Install Ansible Lint packages Linux"
-  when: ansible_os_family == "RedHat"
+  when:
+    - not mal_pip_install
+    - (ansible_os_family == "RedHat" or
+       ansible_os_family == "Debian")
   package:
     name: "{{ item.name }}"
   loop: "{{ mal_packages }}"
@@ -37,8 +44,9 @@
   retries: "{{ linux_install_retries }}"
   delay: "{{ linux_install_delay }}"
 
-# pip
+# pip ----------------------------------------------------------------
 - name: "packages: Test {{ mal_pip_executable }} exists"
+  when: mal_pip_install
   block:
     - name: "packages: Stat {{ mal_pip_executable }}"
       stat:
@@ -51,9 +59,9 @@
     - name: "packages: Meta end host"
       when: not result.stat.exists
       meta: end_host
-  when: ansible_os_family == "Debian"
 
 - name: "packages: Install Ansible Lint pip packages for {{ mal_owner }}"
+  when: mal_pip_install
   become_user: "{{ mal_owner }}"
   become: true
   changed_when: false  # Note 1.
@@ -68,14 +76,18 @@
   until: result is succeeded
   retries: "{{ pip_install_retries }}"
   delay: "{{ pip_install_delay }}"
-  when: ansible_os_family == "Debian"
 
 - name: "packages: Debug pip packages"
-  when: mal_debug|bool
+  when:
+    - mal_pip_install
+    - mal_debug|bool
   debug:
     var: result
 
 - name: "packages: Install Ansible Lint pip requirements for {{ mal_owner }}"
+  when:
+    - mal_pip_install
+    - pip_requirements is defined
   become_user: "{{ mal_owner }}"
   become: true
   changed_when: false  # Note 1.
@@ -87,12 +99,11 @@
   until: result is succeeded
   retries: "{{ pip_install_retries }}"
   delay: "{{ pip_install_delay }}"
-  when:
-    - ansible_os_family == "Debian"
-    - pip_requirements is defined
 
 - name: "packages: Debug pip requirements"
-  when: mal_debug|bool
+  when:
+    - mal_pip_install
+    - mal_debug|bool
   debug:
     var: result
 

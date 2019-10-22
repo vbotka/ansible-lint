@@ -4,7 +4,7 @@
 mal_packages:
   - name: 'ansible-lint'
 
-mal_pip_executable: 'pip2'
+mal_pip_executable: 'pip3'
 
 # EOF
 ...

@@ -1,11 +1,13 @@
 ---
 # defaults for ansible_lint
 
+mal_install: true
 mal_debug: false
 mal_backup_conf: false
 
-# Packages
-mal_packages_install: true
+# Install distro packages or pip
+# false - distro packages, true -  pip
+mal_pip_install: false
 
 # FreeBSD
 freebsd_install_retries: 10

@@ -4,7 +4,8 @@
 mal_packages:
   - name: 'ansible-lint'
 
-mal_pip_executable: "/home/{{ mal_owner }}/.local/bin/pip2"
+# mal_pip_executable: "/home/{{ mal_owner }}/.local/bin/pip2"
+mal_pip_executable: "/usr/bin/pip3"
 
 # Set empty in defaults. Should be customized. Probably in host_vars.
 # mal_links:
