@@ -27,19 +27,11 @@
       mal_pip_executable [{{ mal_pip_executable }}]
       mal_pip_requirements [{{ mal_pip_requirements|default('UNDEFINED') }}]
 
-      mal_source_install [{{ mal_source_install }}]
-      mal_source_version [{{ mal_source_version }}]
-      mal_source_checksum [{{ mal_source_checksum }}]
-      mal_source_file [{{ mal_source_file }}]
-      mal_source_dir [{{ mal_source_dir }}]
-      mal_source_url [{{ mal_source_url }}]
-      mal_source_dest [{{ mal_source_dest }}]
-
       ansible_user_id [{{ ansible_user_id }}]
 
       mal_owner [{{ mal_owner }}]
       mal_backup_conf [{{ mal_backup_conf }}]
-      mal_pip_executable [{{ mal_pip_executable }}]
+
       mal_packages
       {{ mal_packages|to_nice_yaml }}
       mal_links
@@ -47,6 +39,14 @@
 
       mal_config
       {{ mal_config|to_yaml }}
+
+      mal_source_install [{{ mal_source_install }}]
+      mal_source_version [{{ mal_source_version }}]
+      mal_source_checksum [{{ mal_source_checksum }}]
+      mal_source_file [{{ mal_source_file }}]
+      mal_source_dir [{{ mal_source_dir }}]
+      mal_source_url [{{ mal_source_url }}]
+      mal_source_dest [{{ mal_source_dest }}]
 
   debug:
     msg: "{{ msg.split('\n') }}"

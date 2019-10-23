@@ -23,9 +23,11 @@ linux_install_delay: 5
 # Python
 pip_install_retries: 10
 pip_install_delay: 5
+# pip_extraagrs: ""
 
 # Defined in OS specific vars/defaults
 # mal_pip_executable: pip2
+# mal_pip_requirements: []
 
 # Configuration
 mal_config: []
