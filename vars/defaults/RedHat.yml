@@ -1,10 +1,14 @@
 ---
 # RedHat vars for ansible_lint
 
+mal_pip_install: false
+
 mal_packages:
   - name: 'ansible-lint'
 
-mal_pip_executable: 'pip3'
+mal_pip_executable: "{{ pip_executable_redhat }}"
+
+mal_links: []
 
 # EOF
 ...

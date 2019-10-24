@@ -7,7 +7,7 @@ mal_backup_conf: false
 
 # Install distro packages or pip
 # false - distro packages, true -  pip
-mal_pip_install: false
+# mal_pip_install: false                # OS specific variable see vars/defaults
 
 # FreeBSD
 freebsd_install_retries: 10
@@ -23,17 +23,16 @@ linux_install_delay: 5
 # Python
 pip_install_retries: 10
 pip_install_delay: 5
-# pip_extraagrs: ""
+# pip_extraagrs: ""                     # Optional
 
-# Defined in OS specific vars/defaults
-# mal_pip_executable: pip2
-# mal_pip_requirements: []
+# mal_pip_executable: pip2              # OS specific variable see vars/defaults
+# mal_pip_requirements: []              # Optional
 
 # Configuration
 mal_config: []
 
 # Links
-mal_links: []
+# mal_links: []                         # OS specific variable see vars/defaults
 
 # Source
 mal_source_install: false

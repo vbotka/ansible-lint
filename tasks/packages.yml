@@ -59,8 +59,7 @@
         var: result
   when:
     - not mal_pip_install
-    - (ansible_os_family == "RedHat" or
-       ansible_os_family == "Debian")
+    - ansible_os_family == "RedHat" or ansible_os_family == "Debian"
 
 # pip ----------------------------------------------------------------
 - name: "packages: Test {{ mal_pip_executable }} exists"
