@@ -1,6 +1,8 @@
 ---
 # FreeBSD vars defaults for ansible_lint
 
+mal_pip_install: false
+
 mal_packages:
   - name: 'sysutils/py-ansible-lint'
 
