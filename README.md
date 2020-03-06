@@ -1,19 +1,16 @@
-Ansible Lint
-============
+## Ansible Lint
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-lint)
 
 [Ansible role](https://galaxy.ansible.com/vbotka/ansible_lint/). Install and configure *Ansible Lint*.
 
 
-Requirements
-------------
+# Requirements
 
 None.
 
 
-Role Variables
---------------
+# Role Variables
 
 To install OS specific packages set
 
@@ -27,19 +24,18 @@ To download tarball from GitHub, extract and link it set
 mal_source_install: true
 ```
 
-Put OS specific custom variables into the directory /vars. Review /tasks/vars.yml to learn the precedence of the variables.
+Put OS specific custom variables into the directory /vars. Review
+/tasks/vars.yml to see the precedence of the variables.
 
-(TBD). Review the defaults and examples in vars.
+Review the defaults and examples in vars.
 
 
-Dependencies
-------------
+# Dependencies
 
 None.
 
 
-References
-----------
+# References
 
 - [Ansible Lint](https://docs.ansible.com/ansible-lint/)
 - [Ansible Lint Default Rules](https://docs.ansible.com/ansible-lint/rules/default_rules.html#default-rules)
@@ -47,14 +43,11 @@ References
 - [GitHub ansible/ansible-lint](https://github.com/ansible/ansible-lint)
 
 
-License
--------
+# License
 
 [![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
 
-
-Author Information
-------------------
+# Author Information
 
 [Vladimir Botka](https://botka.link)
