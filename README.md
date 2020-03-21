@@ -4,6 +4,8 @@
 
 [Ansible role](https://galaxy.ansible.com/vbotka/ansible_lint/). Install and configure *Ansible Lint*.
 
+Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-lint/issues).
+
 
 # Requirements
 

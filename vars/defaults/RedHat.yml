@@ -4,7 +4,7 @@
 mal_pip_install: false
 
 mal_packages:
-  - name: 'ansible-lint'
+  - name: ansible-lint
 
 mal_pip_executable: "{{ pip_executable_redhat }}"
 

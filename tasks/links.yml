@@ -2,13 +2,13 @@
 
 - name: "links: Create directories for links"
   file:
-    state: "directory"
+    state: directory
     dest: "{{ item.dest|dirname }}"
   loop: "{{ mal_links }}"
 
 - name: "links: Create links"
   file:
-    state: "link"
+    state: link
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     force: "{{ item.force|default(false) }}"
