@@ -32,7 +32,7 @@ pip_install_delay: 5
 mal_config: []
 
 # Links
-# mal_links: []                         # OS specific variable see vars/defaults
+mal_links: []
 
 # Source
 mal_source_install: false

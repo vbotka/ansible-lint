@@ -8,7 +8,8 @@ mal_packages:
 
 mal_pip_executable: "{{ pip_executable_redhat }}"
 
-mal_links: []
+# moved to defaults/main.yml
+# mal_links: []
 
 # EOF
 ...
