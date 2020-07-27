@@ -11,7 +11,9 @@
       ansible_distribution_release [{{ ansible_distribution_release }}]
       ansible_python_version [{{ ansible_python_version }}]
 
-      mal_install [{{ mal_install }}]
+      mal_sanity [{{ mal_sanity }}]
+      mal_pkg_install [{{ mal_pkg_install }}]
+      mal_pip_install [{{ mal_pip_install }}]
 
       freebsd_install_method [{{ freebsd_install_method }}]
       freebsd_use_packages [{{ freebsd_use_packages }}]
@@ -23,11 +25,8 @@
 
       pip_install_retries [{{ pip_install_retries }}]
       pip_install_delay [{{ pip_install_delay }}]
-      pip_extraagrs [{{ pip_extraagrs|default('UNDEFINED') }}]
-
-      mal_pip_install [{{ mal_pip_install }}]
       mal_pip_executable [{{ mal_pip_executable }}]
-      mal_pip_requirements [{{ mal_pip_requirements|default('UNDEFINED') }}]
+      mal_pip_extraagrs [{{ mal_pip_extraagrs|default('UNDEFINED') }}]
 
       ansible_user_id [{{ ansible_user_id }}]
 
@@ -36,9 +35,10 @@
 
       mal_packages
       {{ mal_packages|to_nice_yaml }}
+      mal_pip_requirements
+      {{ mal_pip_requirements|to_nice_yaml }}
       mal_links
       {{ mal_links|to_nice_yaml }}
-
       mal_config
       {{ mal_config|to_yaml }}
 
@@ -51,7 +51,7 @@
       mal_source_dest [{{ mal_source_dest }}]
 
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
 
 # EOF
 ...

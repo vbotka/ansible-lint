@@ -1,28 +1,20 @@
 ---
 # vars for ansible_lint
 
+# mal_pkg_install: true
+# mal_pip_install: false
 # mal_debug: true
-# mal_backup_conf: false
+# mal_backup_conf: true
 
-# # my_variables
 # mal_owner: admin
 # my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 # my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
 
-# # install
-# mal_packages_install: true
-# # mal_pip_executable: "{{ pip_executable }}"
-
-# # links
-# mal_links:
-#   - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
-#     dest: "/home/{{ mal_owner }}/bin/ansible-lint"
-#     force: true
+# mal_links_ubuntu:
 #   - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
 #     dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 #     force: true
 
-# # config
 # mal_rulesdir:
 #   - "{{ my_mal_rules_dir }}"
 # mal_exclude_paths: []
@@ -45,12 +37,10 @@
 #       skip_list: "{{ mal_skip_list }}"
 #       tags: "{{ mal_tags }}"
 
-# # source
 # mal_source_install: true
-# # mal_source_version: "4.1.1a0"
-# # mal_source_checksum: "sha1:e397883c8747053b4889fa35aed640daa81e02c5"
-# mal_source_version: "4.1.0"
-# mal_source_checksum: "sha1:4b6a4b1ce7cd5fe1659b31d76ce182bc199123c2"
+# mal_source_version: "4.3.0a4"
+# mal_source_checksum: "sha1:0d7d1126a158a67ee995fb2f641614260ceed8a3"
+
 
 # EOF
 ...

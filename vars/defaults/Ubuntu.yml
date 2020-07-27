@@ -1,19 +1,10 @@
 ---
-# Debian vars for ansible_lint
+# Ubuntu vars for ansible_lint
 
-mal_pip_install: false
-
-mal_packages:
-  - name: ansible-lint
-
-# mal_pip_executable: "/home/{{ mal_owner }}/.local/bin/pip2"
-mal_pip_executable: "{{ pip_executable_debian }}"
-
-# moved to defaults/main.yml
-# mal_links: []
-#   - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
-#    dest: "/home/{{ mal_owner }}/bin/ansible-lint"
-#    force: true
+mal_packages: "{{ mal_packages_ubuntu }}"
+mal_links: "{{ mal_links_ubuntu }}"
+mal_pip_executable: "{{ pip_executable_ubuntu }}"
+mal_pip_requirements: "{{ pip_requirements_ubuntu }}"
 
 # EOF
 ...

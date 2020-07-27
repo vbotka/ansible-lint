@@ -1,13 +1,11 @@
 ---
 # defaults for ansible_lint
 
-mal_install: true
+mal_pkg_install: false
+mal_pip_install: false
 mal_debug: false
 mal_backup_conf: false
-
-# Install distro packages or pip
-# false - distro packages, true -  pip
-# mal_pip_install: false                # OS specific variable see vars/defaults
+mal_sanity: false
 
 # FreeBSD
 freebsd_install_retries: 10
@@ -23,16 +21,10 @@ linux_install_delay: 5
 # Python
 pip_install_retries: 10
 pip_install_delay: 5
-# pip_extraagrs: ""                     # Optional
+# mal_pip_extraagrs: '--user'
 
-# mal_pip_executable: pip2              # OS specific variable see vars/defaults
-# mal_pip_requirements: []              # Optional
-
-# Configuration
+# Config
 mal_config: []
-
-# Links
-mal_links: []
 
 # Source
 mal_source_install: false
@@ -44,6 +36,46 @@ mal_source_file: "v{{ mal_source_version }}.tar.gz"
 mal_source_dir: "ansible-lint-{{ mal_source_version }}"
 mal_source_url: "https://github.com/ansible/ansible-lint/archive"
 mal_source_dest: /usr/local/src
+
+# OS specific defaults
+mal_packages_debian:
+  - name: ansible-lint
+mal_packages_ubuntu:
+  - name: ansible-lint
+mal_packages_redhat:
+  - name: python-ansible-lint
+mal_packages_freebsd:
+  - name: sysutils/py-ansible-lint
+
+mal_links_debian: []
+#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#    force: true
+mal_links_ubuntu: []
+#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#    force: true
+mal_links_redhat: []
+#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#    force: true
+mal_links_freebsd: []
+#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#    force: true
+
+pip_executable_debian: /usr/bin/pip3
+pip_executable_ubuntu: /usr/bin/pip3
+pip_executable_redhat: /usr/bin/pip3
+pip_executable_freebsd: /usr/local/bin/pip-3.6
+
+pip_requirements_debian: []
+pip_requirements_ubuntu: []
+pip_requirements_redhat: []
+pip_requirements_freebsd: []
+
+# Links
+mal_links: []
 
 # EOF
 ...

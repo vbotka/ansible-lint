@@ -1,0 +1,60 @@
+---
+
+# [TODO] move test to sanity.yml
+- name: "pip: Test {{ mal_pip_executable }} exists"
+  stat:
+    path: "{{ mal_pip_executable }}"
+  register: result
+
+- name: "pip: Not exists {{ mal_pip_executable }}"
+  fail:
+    msg: "[ERROR] {{ mal_pip_executable }} does not exist."
+  when: not result.stat.exists
+
+- name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
+  become_user: "{{ mal_owner }}"
+  become: true
+  changed_when: false  # Note 1.
+  pip:
+    name: "{{ item.name }}"
+    executable: "{{ mal_pip_executable }}"
+    extra_args: "{{ mal_pip_extraagrs|default(omit) }}"
+    version: "{{ item.version|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+  loop: "{{ mal_packages }}"
+  register: result
+  until: result is succeeded
+  retries: "{{ pip_install_retries }}"
+  delay: "{{ pip_install_delay }}"
+
+- name: "pip: Debug pip packages"
+  debug:
+    var: result
+  when: mal_debug|bool
+
+- name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
+  become_user: "{{ mal_owner }}"
+  become: true
+  changed_when: false  # Note 1.
+  pip:
+    requirements: "{{ mal_pip_requirements }}"
+    executable: "{{ mal_pip_executable }}"
+    extra_args: "{{ pip_extraagrs|default(omit) }}"
+  loop: "{{ mal_pip_requirements }}"
+  register: result
+  until: result is succeeded
+  retries: "{{ pip_install_retries }}"
+  delay: "{{ pip_install_delay }}"
+  when: mal_pip_requirements|length > 0
+
+- name: "pip: Debug pip requirements"
+  debug:
+    var: result
+  when: mal_debug|bool
+
+# Note 1.
+# The pip module isn't always idempotent #28952
+# https://github.com/ansible/ansible/issues/28952
+
+# EOF
+...

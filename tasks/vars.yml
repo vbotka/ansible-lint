@@ -1,14 +1,13 @@
 ---
 
 - name: "Declare mal_owner when undefined"
-  when: mal_owner is undefined
   set_fact:
     mal_owner: "{{ ansible_user_id }}"
+  when: mal_owner is undefined
 
-- name: "vars: Default vars for
-               {{ ansible_os_family }}
-               {{ ansible_distribution }}
-               {{ ansible_distribution_release }}"
+- name: "vars: Default vars for {{ ansible_os_family }}
+                                {{ ansible_distribution }}
+                                {{ ansible_distribution_release }}"
   include_vars: "{{ item }}"
   with_first_found:
     - files:
@@ -19,10 +18,9 @@
         - defaults.yml
       paths: '{{ role_path }}/vars/defaults'
 
-- name: "vars: Custom vars for
-               {{ ansible_os_family }}
-               {{ ansible_distribution }}
-               {{ ansible_distribution_release }}"
+- name: "vars: Custom vars for {{ ansible_os_family }}
+                               {{ ansible_distribution }}
+                               {{ ansible_distribution_release }}"
   include_vars: "{{ item }}"
   with_first_found:
     - files:

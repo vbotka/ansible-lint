@@ -1,0 +1,12 @@
+---
+
+- name: "sanity: Debug"
+  debug:
+    msg: Not implemented yet.
+
+# [TODO]
+#
+# when: mal_pip_install exist: python3-setuptools, python3-pip
+
+# EOF
+...

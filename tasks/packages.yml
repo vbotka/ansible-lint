@@ -1,9 +1,7 @@
 ---
 
-# packages -----------------------------------------------------------
-
 # FreeBSD
-- name: "packages: Install Ansible Lint packages FreeBSD"
+- name: "packages: Install Ansible Lint FreeBSD packages"
   block:
     - name: "packages: Install Ansible Lint packages FreeBSD"
       pkgng:
@@ -14,15 +12,14 @@
       retries: "{{ freebsd_install_retries }}"
       delay: "{{ freebsd_install_delay }}"
     - name: "packages: Debug FreeBSD packages"
-      when: mal_debug|bool
       debug:
         var: result
+      when: mal_debug|bool
   when:
-    - not mal_pip_install
     - ansible_os_family == "FreeBSD"
     - freebsd_install_method|lower == "packages"
 
-- name: "packages: Install Ansible Lint ports FreeBSD"
+- name: "packages: Install Ansible Lint FreeBSD ports"
   block:
     - name: "packages: Install Ansible Lint ports FreeBSD"
       portinstall:
@@ -34,11 +31,10 @@
       retries: "{{ freebsd_install_retries }}"
       delay: "{{ freebsd_install_delay }}"
     - name: "packages: Debug FreeBSD ports"
-      when: mal_debug|bool
       debug:
         var: result
+      when: mal_debug|bool
   when:
-    - not mal_pip_install
     - ansible_os_family == "FreeBSD"
     - freebsd_install_method|lower == "ports"
 
@@ -54,76 +50,11 @@
       retries: "{{ linux_install_retries }}"
       delay: "{{ linux_install_delay }}"
     - name: "packages: Debug Linux"
-      when: mal_debug|bool
       debug:
         var: result
+      when: mal_debug|bool
   when:
-    - not mal_pip_install
     - ansible_os_family == "RedHat" or ansible_os_family == "Debian"
-
-# pip ----------------------------------------------------------------
-- name: "packages: Test {{ mal_pip_executable }} exists"
-  when: mal_pip_install
-  block:
-    - name: "packages: Stat {{ mal_pip_executable }}"
-      stat:
-        path: "{{ mal_pip_executable }}"
-      register: result
-    - name: "packages: Not exists {{ mal_pip_executable }}"
-      fail:
-        msg: "[ERROR] {{ mal_pip_executable }} does not exist."
-      when: not result.stat.exists
-
-- name: "packages: Install Ansible Lint pip packages for {{ mal_owner }}"
-  when: mal_pip_install
-  become_user: "{{ mal_owner }}"
-  become: true
-  changed_when: false  # Note 1.
-  pip:
-    name: "{{ item.name }}"
-    executable: "{{ mal_pip_executable }}"
-    version: "{{ item.version|default(omit) }}"
-    state: "{{ item.state|default(omit) }}"
-    extra_args: "{{ pip_extraagrs|default(omit) }}"
-  loop: "{{ mal_packages }}"
-  register: result
-  until: result is succeeded
-  retries: "{{ pip_install_retries }}"
-  delay: "{{ pip_install_delay }}"
-
-- name: "packages: Debug pip packages"
-  when:
-    - mal_pip_install
-    - mal_debug|bool
-  debug:
-    var: result
-
-- name: "packages: Install Ansible Lint pip requirements for {{ mal_owner }}"
-  when:
-    - mal_pip_install
-    - mal_pip_requirements is defined
-  become_user: "{{ mal_owner }}"
-  become: true
-  changed_when: false  # Note 1.
-  pip:
-    requirements: "{{ mal_pip_requirements }}"
-    executable: "{{ mal_pip_executable }}"
-    extra_args: "{{ pip_extraagrs|default(omit) }}"
-  register: result
-  until: result is succeeded
-  retries: "{{ pip_install_retries }}"
-  delay: "{{ pip_install_delay }}"
-
-- name: "packages: Debug pip requirements"
-  when:
-    - mal_pip_install
-    - mal_debug|bool
-  debug:
-    var: result
-
-# Note 1.
-# The pip module isn't always idempotent #28952
-# https://github.com/ansible/ansible/issues/28952
 
 # EOF
 ...

@@ -9,8 +9,16 @@
   tags: [mal_debug, always]
 
 - import_tasks: packages.yml
-  when: mal_install|bool
+  when: mal_pkg_install|bool
   tags: mal_packages
+
+- import_tasks: sanity.yml
+  when: mal_sanity|bool
+  tags: mal_sanity
+
+- import_tasks: pip.yml
+  when: mal_pip_install|bool
+  tags: mal_pip
 
 - import_tasks: source.yml
   when: mal_source_install|bool
