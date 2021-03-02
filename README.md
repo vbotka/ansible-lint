@@ -1,10 +1,12 @@
 ## Ansible Lint
 
-[![Build Status](https://travis-ci.org/vbotka/ansible-lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-lint)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/ansible_lint)[![Build Status](https://travis-ci.org/vbotka/ansible-lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-lint)
 
 [Ansible role](https://galaxy.ansible.com/vbotka/ansible_lint/). Install and configure *Ansible Lint*.
 
-Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-lint/issues).
+Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-lint/issues).
+
+[Contributions are welcome](https://github.com/firstcontributions/first-contributions).
 
 
 # Requirements
