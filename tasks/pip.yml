@@ -2,12 +2,12 @@
 
 # [TODO] move test to sanity.yml
 - name: "pip: Test {{ mal_pip_executable }} exists"
-  stat:
+  ansible.builtin.stat:
     path: "{{ mal_pip_executable }}"
   register: result
 
 - name: "pip: Not exists {{ mal_pip_executable }}"
-  fail:
+  ansible.builtin.fail:
     msg: "[ERROR] {{ mal_pip_executable }} does not exist."
   when: not result.stat.exists
 
@@ -15,7 +15,7 @@
   become_user: "{{ mal_owner }}"
   become: true
   changed_when: false  # Note 1.
-  pip:
+  ansible.builtin.pip:
     name: "{{ item.name }}"
     executable: "{{ mal_pip_executable }}"
     extra_args: "{{ mal_pip_extraagrs|default(omit) }}"
@@ -28,7 +28,7 @@
   delay: "{{ pip_install_delay }}"
 
 - name: "pip: Debug pip packages"
-  debug:
+  ansible.builtin.debug:
     var: result
   when: mal_debug|bool
 
@@ -36,7 +36,7 @@
   become_user: "{{ mal_owner }}"
   become: true
   changed_when: false  # Note 1.
-  pip:
+  ansible.builtin.pip:
     requirements: "{{ mal_pip_requirements }}"
     executable: "{{ mal_pip_executable }}"
     extra_args: "{{ pip_extraagrs|default(omit) }}"
@@ -48,7 +48,7 @@
   when: mal_pip_requirements|length > 0
 
 - name: "pip: Debug pip requirements"
-  debug:
+  ansible.builtin.debug:
     var: result
   when: mal_debug|bool
 
