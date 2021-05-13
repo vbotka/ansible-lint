@@ -2,7 +2,7 @@
 
 - name: "debug: Ansible Lint"
   vars:
-    msg: |
+    msg: |-
       ansible_architecture [{{ ansible_architecture }}]
       ansible_os_family [{{ ansible_os_family }}]
       ansible_distribution [{{ ansible_distribution }}]
@@ -50,8 +50,8 @@
       mal_source_url [{{ mal_source_url }}]
       mal_source_dest [{{ mal_source_dest }}]
 
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
 
 # EOF
 ...

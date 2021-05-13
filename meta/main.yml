@@ -22,4 +22,5 @@ galaxy_info:
     - ansible
     - lint
 dependencies: []
+collections: []
 ...
