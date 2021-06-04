@@ -1,8 +1,17 @@
 ---
 
-- name: "sanity: Debug"
-  ansible.builtin.debug:
-    msg: Not implemented yet.
+- name: "sanity: Test {{ mal_pip_executable }} exists"
+  block:
+    - name: "sanity: Stat {{ mal_pip_executable }}"
+      ansible.builtin.stat:
+        path: "{{ mal_pip_executable }}"
+      register: result
+
+    - name: "sanity: Not exists {{ mal_pip_executable }}"
+      ansible.builtin.fail:
+        msg: "[ERROR] {{ mal_pip_executable }} does not exist."
+      when: not result.stat.exists
+  when: mal_sanity_pip_exists|bool
 
 # [TODO]
 #

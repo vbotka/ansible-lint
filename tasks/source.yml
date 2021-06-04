@@ -4,6 +4,7 @@
   ansible.builtin.file:
     state: directory
     path: "{{ mal_source_dest }}"
+    mode: "{{ mal_source_dest_mode }}"
   tags: mal_source_fetch
 
 - name: "source: Download {{ mal_source_url }}/{{ mal_source_file }}"
@@ -13,8 +14,7 @@
     checksum: "{{ mal_source_checksum }}"
   tags: mal_source_fetch
 
-- name: "source: Check existence of {{ mal_source_dest }}/ansible-lint-{{
-                                       mal_source_file }}"
+- name: "source: Check existence of {{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
   ansible.builtin.stat:
     path: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
   register: mal_source_fetched

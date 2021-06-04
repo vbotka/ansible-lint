@@ -12,6 +12,7 @@
       ansible_python_version [{{ ansible_python_version }}]
 
       mal_sanity [{{ mal_sanity }}]
+      mal_sanity_pip_exists [{{ mal_sanity_pip_exists }}]
       mal_pkg_install [{{ mal_pkg_install }}]
       mal_pip_install [{{ mal_pip_install }}]
 
@@ -49,6 +50,7 @@
       mal_source_dir [{{ mal_source_dir }}]
       mal_source_url [{{ mal_source_url }}]
       mal_source_dest [{{ mal_source_dest }}]
+      mal_source_dest_mode [{{ mal_source_dest_mode }}]
 
   ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"

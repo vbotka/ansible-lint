@@ -4,6 +4,7 @@
   ansible.builtin.file:
     state: directory
     dest: "{{ item.path|dirname }}"
+    mode: "{{ item.dir_mode|default('0700') }}"
   loop: "{{ mal_config }}"
   loop_control:
     label: "{{ item.path|dirname }}"
