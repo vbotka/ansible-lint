@@ -1,17 +1,18 @@
 ---
 # vars for ansible_lint
 
-# mal_pkg_install: true
-# mal_pip_install: false
-# mal_debug: true
-# mal_backup_conf: true
+# mal_pkg_install: false
+# mal_pip_install: true
+# mal_debug: false
+# mal_backup_conf: false
 
+# mal_pip_executable_override: /usr/bin/pip3
 # mal_owner: admin
 # my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 # my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
 
 # mal_links:
-#   - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#   - src: "/home/{{ mal_owner }}/.local/lib/python3.8/site-packages/ansiblelint/rules/"
 #     dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 #     force: true
 
@@ -38,8 +39,8 @@
 #       tags: "{{ mal_tags }}"
 
 # mal_source_install: true
-# mal_source_version: "4.3.0a4"
-# mal_source_checksum: "sha1:0d7d1126a158a67ee995fb2f641614260ceed8a3"
+# mal_source_version: "5.0.11"
+# mal_source_checksum: "sha1:5e6c9ccf47a492652750b969b983202bc2ba1691"
 
 
 # EOF
