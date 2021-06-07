@@ -1,10 +1,10 @@
 ---
 # Ubuntu vars for ansible_lint
 
-mal_packages: "{{ mal_packages_ubuntu }}"
-mal_links: "{{ mal_links_ubuntu }}"
-mal_pip_executable: "{{ pip_executable_ubuntu }}"
-mal_pip_requirements: "{{ pip_requirements_ubuntu }}"
+mal_pip_executable: /usr/bin/pip3
+mal_packages:
+  - name: ansible-lint
+mal_pip_requirements: []
 
 # EOF
 ...

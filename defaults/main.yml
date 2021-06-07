@@ -39,50 +39,14 @@ mal_source_url: "https://github.com/ansible/ansible-lint/archive"
 mal_source_dest: /usr/local/src
 mal_source_dest_mode: "0755"
 
-# OS specific defaults
-mal_packages_debian:
-  - name: ansible-lint
-mal_packages_ubuntu:
-  - name: ansible-lint
-mal_packages_redhat:
-  - name: python-ansible-lint
-mal_packages_freebsd:
-  - name: sysutils/py-ansible-lint
-
-mal_links_debian: []
-#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
-#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#    force: true
-mal_links_ubuntu: []
-# Package install by pip when mal_pip_install=true
-#  - src: "/home/{{ mal_owner }}/.local/lib/python3.8/site-packages/ansiblelint/rules/"
-#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#
-# Source installed when mal_source_install=true
-#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
-#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#    force: true
-mal_links_redhat: []
-#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
-#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#    force: true
-mal_links_freebsd: []
-#  - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
-#    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#    force: true
-
-pip_executable_debian: /usr/bin/pip3
-pip_executable_ubuntu: /usr/bin/pip3
-pip_executable_redhat: /usr/bin/pip3
-pip_executable_freebsd: /usr/local/bin/pip-3.6
-
-pip_requirements_debian: []
-pip_requirements_ubuntu: []
-pip_requirements_redhat: []
-pip_requirements_freebsd: []
-
 # Links
 mal_links: []
+
+# Override OS specific variables. See tasks/vars.yml
+# mal_pip_executable_override: /usr/bin/pip4
+# mal_pip_packages_override:
+# - name: ansible-lint-devel
+# mal_pip_requirements: []
 
 # EOF
 ...
