@@ -10,7 +10,7 @@
 # my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 # my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
 
-# mal_links_ubuntu:
+# mal_links:
 #   - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
 #     dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
 #     force: true

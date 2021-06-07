@@ -1,43 +1,53 @@
 ---
 
 - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
-  become_user: "{{ mal_owner }}"
-  become: true
-  ansible.builtin.pip:
-    name: "{{ item.name }}"
-    executable: "{{ mal_pip_executable }}"
-    extra_args: "{{ mal_pip_extraagrs|default(omit) }}"
-    version: "{{ item.version|default(omit) }}"
-    state: "{{ item.state|default(omit) }}"
-  loop: "{{ mal_packages }}"
-  register: result
-  until: result is succeeded
-  retries: "{{ pip_install_retries }}"
-  delay: "{{ pip_install_delay }}"
-
-- name: "pip: Debug pip packages"
-  ansible.builtin.debug:
-    var: result
-  when: mal_debug|bool
+  block:
+    - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
+      become_user: "{{ mal_owner }}"
+      become: true
+      ansible.builtin.pip:
+        name: "{{ item.name }}"
+        executable: "{{ mal_pip_executable }}"
+        extra_args: "{{ mal_pip_extraagrs|default(omit) }}"
+        version: "{{ item.version|default(omit) }}"
+        state: "{{ item.state|default(omit) }}"
+      loop: "{{ mal_packages }}"
+      register: result
+      until: result is succeeded
+      retries: "{{ pip_install_retries }}"
+      delay: "{{ pip_install_delay }}"
+    - name: "pip: Debug pip packages"
+      ansible.builtin.debug:
+        var: result
+      when: mal_debug|bool
+  rescue:
+    - name: "pip: Rescue pip packages"
+      ansible.builtin.fail:
+        msg: "Failed. {{ result }}"
 
 - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
-  become_user: "{{ mal_owner }}"
-  become: true
-  ansible.builtin.pip:
-    requirements: "{{ mal_pip_requirements }}"
-    executable: "{{ mal_pip_executable }}"
-    extra_args: "{{ pip_extraagrs|default(omit) }}"
-  loop: "{{ mal_pip_requirements }}"
-  register: result
-  until: result is succeeded
-  retries: "{{ pip_install_retries }}"
-  delay: "{{ pip_install_delay }}"
-  when: mal_pip_requirements|length > 0
-
-- name: "pip: Debug pip requirements"
-  ansible.builtin.debug:
-    var: result
-  when: mal_debug|bool
+  block:
+    - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
+      become_user: "{{ mal_owner }}"
+      become: true
+      ansible.builtin.pip:
+        requirements: "{{ mal_pip_requirements }}"
+        executable: "{{ mal_pip_executable }}"
+        extra_args: "{{ pip_extraagrs|default(omit) }}"
+      loop: "{{ mal_pip_requirements }}"
+      register: result
+      until: result is succeeded
+      retries: "{{ pip_install_retries }}"
+      delay: "{{ pip_install_delay }}"
+      when: mal_pip_requirements|length > 0
+    - name: "pip: Debug pip requirements"
+      ansible.builtin.debug:
+        var: result
+      when: mal_debug|bool
+  rescue:
+    - name: "pip: Rescue pip requirements"
+      ansible.builtin.fail:
+        msg: "Failed. {{ result }}"
 
 # EOF
 ...

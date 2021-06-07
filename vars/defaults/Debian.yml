@@ -1,10 +1,10 @@
 ---
 # Debian vars/defaults for ansible_lint
 
-mal_packages: "{{ mal_packages_debian }}"
-mal_links: "{{ mal_links_debian }}"
-mal_pip_executable: "{{ pip_executable_debian }}"
-mal_pip_requirements: "{{ pip_requirements_debian }}"
+mal_pip_executable: /usr/bin/pip3
+mal_packages:
+  - name: ansible-lint
+mal_pip_requirements: []
 
 # EOF
 ...

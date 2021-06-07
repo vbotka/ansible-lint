@@ -1,21 +1,35 @@
 ---
 
 - name: "links: Create directories for links"
-  ansible.builtin.file:
-    state: directory
-    dest: "{{ item.dest }}"
-    mode: "{{ item.dir_mode|default('0700') }}"
-  loop: "{{ mal_links }}"
-  loop_control:
-    label: "{{ item.dest|dirname }}"
+  block:
+    - name: "links: Create directories for links"
+      ansible.builtin.file:
+        state: directory
+        dest: "{{ item.dest }}"
+        mode: "{{ item.dir_mode|default('0700') }}"
+      register: result
+      loop: "{{ mal_links }}"
+      loop_control:
+        label: "{{ item.dest|dirname }}"
+  rescue:
+    - name: "links: Rescue create directories for links"
+      ansible.builtin.fail:
+        msg: "Failed. {{ result }}"
 
 - name: "links: Create links"
-  ansible.builtin.file:
-    state: link
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    force: "{{ item.force|default(false) }}"
-  loop: "{{ mal_links }}"
+  block:
+    - name: "links: Create links"
+      ansible.builtin.file:
+        state: link
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        force: "{{ item.force|default(false) }}"
+      register: result
+      loop: "{{ mal_links }}"
+  rescue:
+    - name: "links: Rescue create links"
+      ansible.builtin.fail:
+        msg: "Failed. {{ result }}"
 
 # EOF
 ...

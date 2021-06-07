@@ -1,33 +1,41 @@
 ---
 # tasks for ansible_lint
 
-- import_tasks: vars.yml
+- name: Import vars.yml
+  ansible.builtin.import_tasks: vars.yml
   tags: [mal_vars, always]
 
-- import_tasks: debug.yml
+- name: Import debug.yml
+  ansible.builtin.import_tasks: debug.yml
   when: mal_debug|bool
   tags: [mal_debug, always]
 
-- import_tasks: packages.yml
+- name: Import packages.yml
+  ansible.builtin.import_tasks: packages.yml
   when: mal_pkg_install|bool
   tags: mal_packages
 
-- import_tasks: sanity.yml
+- name: Import sanity.yml
+  ansible.builtin.import_tasks: sanity.yml
   when: mal_sanity|bool
   tags: mal_sanity
 
-- import_tasks: pip.yml
+- name: Import pip.yml
+  ansible.builtin.import_tasks: pip.yml
   when: mal_pip_install|bool
   tags: mal_pip
 
-- import_tasks: source.yml
+- name: Import source.yml
+  ansible.builtin.import_tasks: source.yml
   when: mal_source_install|bool
   tags: mal_source
 
-- import_tasks: links.yml
+- name: Import links.yml
+  ansible.builtin.import_tasks: links.yml
   tags: mal_links
 
-- import_tasks: config.yml
+- name: Import config.yml
+  ansible.builtin.import_tasks: config.yml
   tags: mal_config
 
 # EOF
