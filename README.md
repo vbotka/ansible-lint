@@ -9,35 +9,77 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 [Contributions are welcome](https://github.com/firstcontributions/first-contributions).
 
 
-## Requirements
+## Supported platforms
 
-None.
+This role has been developed and tested with
+* [Ubuntu Supported Releases](http://releases.ubuntu.com/)
+* [FreeBSD Supported Production Releases](https://www.freebsd.org/releases/)
+
+
+## Requirements and dependencies
+
+### Collections
+
+- community.general
 
 
 ## Role Variables
 
-To install OS specific packages set
+- See default variables in *defaults/main.yml*
+- See OS specific default variables in *vars/defaults/*
+- See examples in *vars/main.yml.samples*
+- Put OS specific custom variables into the directory *vars/*
+- See the precedence of the variables in */tasks/vars.yml*
+
+
+### Variables
+
+- By default the OS specific packages will be installed
 
 ```
-mal_packages_install: true
+mal_pkg_install: true
 ```
+
+- By default use *pip* to install *ansible-runner* on Ubuntu and RH
+
+```
+mal_pip_install: true
+```
+
+- Use packages, or ports to install *ansible-runner* on FreeBSD
+
+```
+mal_pip_install: false
+```
+
+- Set variable *ar_owner* to the user who will own the packages installed by pip
+
+```
+mal_owner: admin
+```
+
+By default
+
+```
+mal_owner: "{{ ansible_user_id }}"
+```
+
+The *pip* installation task will run
+
+```
+become_user: "{{ ar_owner }}"
+become: true
+pip:
+  name: ...
+```
+
+See *tasks/packages.yml*
 
 To download tarball from GitHub, extract and link it set
 
 ```
 mal_source_install: true
 ```
-
-Put OS specific custom variables into the directory /vars. Review
-/tasks/vars.yml to see the precedence of the variables.
-
-Review the defaults and examples in vars.
-
-
-## Dependencies
-
-None.
-
 
 ## References
 
