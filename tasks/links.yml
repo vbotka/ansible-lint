@@ -5,8 +5,8 @@
     - name: "links: Create directories for links"
       ansible.builtin.file:
         state: directory
-        dest: "{{ item.dest }}"
-        mode: "{{ item.dir_mode|default('0700') }}"
+        dest: "{{ item.dest|dirname }}"
+        mode: "{{ item.dir_mode|default('0755') }}"
       register: result
       loop: "{{ mal_links }}"
       loop_control:
