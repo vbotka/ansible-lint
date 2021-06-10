@@ -18,6 +18,10 @@ This role has been developed and tested with
 
 ## Requirements and dependencies
 
+### Roles
+
+- vbotka.ansible_lib
+
 ### Collections
 
 - community.general
