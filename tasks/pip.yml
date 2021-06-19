@@ -1,5 +1,13 @@
 ---
 
+# TODO: Still open?
+# pip module always set to changed when using check mode #62826
+# https://github.com/ansible/ansible/issues/62826
+- name: "pip: Debug check mode"
+  ansible.builtin.debug:
+    msg: Module pip does not support check mode. Skipping.
+  when: ansible_check_mode
+
 - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
   block:
     - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
@@ -24,6 +32,7 @@
     - name: "pip: Rescue pip packages"
       ansible.builtin.fail:
         msg: "Failed. {{ result }}"
+  when: not ansible_check_mode
 
 - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
   block:
@@ -48,6 +57,7 @@
     - name: "pip: Rescue pip requirements"
       ansible.builtin.fail:
         msg: "Failed. {{ result }}"
+  when: not ansible_check_mode
 
 # EOF
 ...
