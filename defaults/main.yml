@@ -31,8 +31,8 @@ mal_config: []
 
 # Source
 mal_source_install: false
-mal_source_version: "5.0.11"
-mal_source_checksum: "sha1:5e6c9ccf47a492652750b969b983202bc2ba1691"
+mal_source_version: "5.2.0"
+mal_source_checksum: "sha1:69fdcfdc2eb10efd94016fc131269072d031f97e"
 mal_source_file: "v{{ mal_source_version }}.tar.gz"
 mal_source_dir: "ansible-lint-{{ mal_source_version }}"
 mal_source_url: "https://github.com/ansible/ansible-lint/archive"

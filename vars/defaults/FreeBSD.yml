@@ -1,9 +1,9 @@
 ---
 # FreeBSD vars defaults for ansible_lint
 
-mal_pip_executable: /usr/local/bin/pip-3.6
+mal_pip_executable: /usr/local/bin/pip-3.8
 mal_packages:
-  - name: sysutils/py-ansible-lint
+  - sysutils/py-ansible-lint
 mal_pip_requirements: []
 
 # EOF
