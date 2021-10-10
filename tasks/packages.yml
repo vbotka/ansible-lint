@@ -5,7 +5,7 @@
   block:
     - name: "packages: Install Ansible Lint FreeBSD packages"
       community.general.pkgng:
-        name: "{{ mal_packages }}"
+        name: "{{ mal_packages|map(attribute='name')|list }}"
       register: result
       until: result is succeeded
       retries: "{{ freebsd_install_retries }}"
