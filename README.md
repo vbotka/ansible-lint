@@ -1,6 +1,6 @@
 # Ansible Lint
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/ansible_lint)[![Build Status](https://travis-ci.org/vbotka/ansible-lint.svg?branch=master)](https://travis-ci.org/vbotka/ansible-lint)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/ansible_lint)[![Build Status](https://app.travis-ci.com/vbotka/ansible-lint.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-lint)
 
 [Ansible role](https://galaxy.ansible.com/vbotka/ansible_lint/). Install and configure [ansible-lint](https://github.com/ansible-community/ansible-lint).
 
@@ -100,4 +100,4 @@ mal_source_install: true
 
 ## Author Information
 
-[Vladimir Botka](https://botka.link)
+[Vladimir Botka](https://botka.info)
