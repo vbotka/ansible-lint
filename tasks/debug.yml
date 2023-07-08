@@ -53,7 +53,7 @@
       mal_source_dest_mode [{{ mal_source_dest_mode }}]
 
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
 
 # EOF
 ...
