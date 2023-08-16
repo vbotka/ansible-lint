@@ -38,31 +38,31 @@ This role has been developed and tested with
 
 ### Variables
 
-- By default the OS specific packages will be installed
+- The OS specific packages will be installed if you set
 
 ```
 mal_pkg_install: true
 ```
 
-- By default use *pip* to install *ansible-runner* on Ubuntu and RH
+- Instead, you can use *pip* to install *ansible-runner* on Linux if you set
 
 ```
 mal_pip_install: true
 ```
 
-- Use packages, or ports to install *ansible-runner* on FreeBSD
+- Use packages, or ports to install *ansible-runner* on FreeBSD and set
 
 ```
 mal_pip_install: false
 ```
 
-- Set variable *ar_owner* to the user who will own the packages installed by pip
+- When installing by pip, set variable *mal_owner* to the user who will own the packages installed by pip
 
 ```
 mal_owner: admin
 ```
 
-By default
+When undefined, the variable *mal_owner* will be set to *ansible_user_id* if defined. The existence of the variable *mal_owner* is tested by sanity.
 
 ```
 mal_owner: "{{ ansible_user_id }}"
@@ -71,7 +71,7 @@ mal_owner: "{{ ansible_user_id }}"
 The *pip* installation task will run
 
 ```
-become_user: "{{ ar_owner }}"
+become_user: "{{ mal_owner }}"
 become: true
 pip:
   name: ...

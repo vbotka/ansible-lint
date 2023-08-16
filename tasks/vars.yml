@@ -3,7 +3,7 @@
 - name: "vars: Declare mal_owner when undefined"
   ansible.builtin.set_fact:
     mal_owner: "{{ ansible_user_id }}"
-  when: mal_owner is undefined
+  when: mal_owner is undefined and ansible_user_id is defined
 
 - name: "vars: Include OS vars"
   block:
@@ -15,18 +15,35 @@
         name: vbotka.ansible_lib
         tasks_from: al_include_os_vars_path
 
-- name: "vars: Override mal_pip_executable"
-  ansible.builtin.set_fact:
-    mal_pip_executable: "{{ mal_pip_executable_override }}"
-  when: mal_pip_executable_override is defined
-- name: "vars: Override mal_pip_packages"
-  ansible.builtin.set_fact:
-    mal_pip_packages: "{{ mal_pip_packages_override }}"
-  when: mal_pip_packages_override is defined
-- name: "vars: Override mal_pip_requirements"
-  ansible.builtin.set_fact:
-    mal_pip_requirements: "{{ mal_pip_requirements_override }}"
-  when: mal_pip_requirements_override is defined
+- name: "vars: Apply mal_pip_*_override"
+  block:
+    - name: "vars: Override mal_pip_executable"
+      ansible.builtin.set_fact:
+        mal_pip_executable: "{{ mal_pip_executable_override }}"
+      when: mal_pip_executable_override is defined
+    - name: "vars: Override mal_pip_packages"
+      ansible.builtin.set_fact:
+        mal_pip_packages: "{{ mal_pip_packages_override }}"
+      when: mal_pip_packages_override is defined
+    - name: "vars: Override mal_pip_requirements"
+      ansible.builtin.set_fact:
+        mal_pip_requirements: "{{ mal_pip_requirements_override }}"
+      when: mal_pip_requirements_override is defined
+
+- name: "vars: Set mal_pip_python_version"
+  block:
+    - name: "vars: Get pip python version"
+      ansible.builtin.command: "{{ mal_pip_executable }} -V"
+      register: out
+      changed_when: false
+    - name: "vars: Set pip python version"
+      ansible.builtin.set_fact:
+        mal_pip_python_version: "{{ out.stdout|
+                                    regex_replace('^.*python\\s*([\\d.]+).*$', '\\1') }}"
+    - name: "vars: Set pip python version major and minor"
+      ansible.builtin.set_fact:
+        mal_pip_python_version_major: "{{ mal_pip_python_version.split('.').0 }}"
+        mal_pip_python_version_minor: "{{ mal_pip_python_version.split('.').1 }}"
 
 # EOF
 ...

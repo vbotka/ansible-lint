@@ -6,9 +6,9 @@
       ansible.builtin.stat:
         path: "{{ mal_pip_executable }}"
       register: result
-    - name: "sanity: Fail. Not exists {{ mal_pip_executable }}"
+    - name: "sanity: Error. Not exists {{ mal_pip_executable }}"
       ansible.builtin.fail:
-        msg: "Failed. {{ mal_pip_executable }} does not exist."
+        msg: "[ERROR] {{ mal_pip_executable }} does not exist."
       when: not result.stat.exists
   when: mal_sanity_pip_exists|bool
 
