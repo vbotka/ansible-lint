@@ -44,13 +44,13 @@ This role has been developed and tested with
 mal_pkg_install: true
 ```
 
-- Instead, you can use *pip* to install *ansible-runner* on Linux if you set
+- Instead, you can use *pip* to install *ansible-lint* on Linux if you set
 
 ```
 mal_pip_install: true
 ```
 
-- Use packages, or ports to install *ansible-runner* on FreeBSD and set
+- Use packages, or ports to install *ansible-lint* on FreeBSD and set
 
 ```
 mal_pip_install: false
