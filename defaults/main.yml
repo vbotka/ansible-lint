@@ -8,6 +8,7 @@ mal_backup_conf: false
 
 # Sanity
 mal_sanity: true
+mal_sanity_pip_owner_defined: "{{ mal_pip_install }}"
 mal_sanity_pip_exists: "{{ mal_pip_install }}"
 
 # FreeBSD

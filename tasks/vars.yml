@@ -36,6 +36,7 @@
       ansible.builtin.command: "{{ mal_pip_executable }} -V"
       register: out
       changed_when: false
+      check_mode: false
     - name: "vars: Set pip python version"
       ansible.builtin.set_fact:
         mal_pip_python_version: "{{ out.stdout|

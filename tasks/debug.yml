@@ -23,6 +23,7 @@
       pip_install_delay: {{ pip_install_delay }}
 
       mal_sanity: {{ mal_sanity }}
+      mal_sanity_pip_owner_defined: {{ mal_sanity_pip_owner_defined }}
       mal_sanity_pip_exists: {{ mal_sanity_pip_exists }}
       mal_pip_install: {{ mal_pip_install }}
       mal_pip_executable: {{ mal_pip_executable }}
