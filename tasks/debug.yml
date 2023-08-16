@@ -3,54 +3,53 @@
 - name: "debug: Ansible Lint"
   vars:
     msg: |-
-      ansible_architecture [{{ ansible_architecture }}]
-      ansible_os_family [{{ ansible_os_family }}]
-      ansible_distribution [{{ ansible_distribution }}]
-      ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
-      ansible_distribution_version [{{ ansible_distribution_version }}]
-      ansible_distribution_release [{{ ansible_distribution_release }}]
-      ansible_python_version [{{ ansible_python_version }}]
+      ansible_architecture: {{ ansible_architecture }}
+      ansible_os_family: {{ ansible_os_family }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_major_version: {{ ansible_distribution_major_version }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
+      ansible_python_version: {{ ansible_python_version }}
 
-      mal_sanity [{{ mal_sanity }}]
-      mal_sanity_pip_exists [{{ mal_sanity_pip_exists }}]
-      mal_pkg_install [{{ mal_pkg_install }}]
-      mal_pip_install [{{ mal_pip_install }}]
+      ansible_user_id: {{ ansible_user_id }}
 
-      freebsd_install_method [{{ freebsd_install_method }}]
-      freebsd_use_packages [{{ freebsd_use_packages }}]
-      freebsd_install_retries [{{ freebsd_install_retries }}]
-      freebsd_install_delay [{{ freebsd_install_delay }}]
+      freebsd_install_method: {{ freebsd_install_method }}
+      freebsd_use_packages: {{ freebsd_use_packages }}
+      freebsd_install_retries: {{ freebsd_install_retries }}
+      freebsd_install_delay: {{ freebsd_install_delay }}
+      linux_install_retries: {{ linux_install_retries }}
+      linux_install_delay: {{ linux_install_delay }}
+      pip_install_retries: {{ pip_install_retries }}
+      pip_install_delay: {{ pip_install_delay }}
 
-      linux_install_retries [{{ linux_install_retries }}]
-      linux_install_delay [{{ linux_install_delay }}]
-
-      pip_install_retries [{{ pip_install_retries }}]
-      pip_install_delay [{{ pip_install_delay }}]
-      mal_pip_executable [{{ mal_pip_executable }}]
-      mal_pip_extraagrs [{{ mal_pip_extraagrs|default('UNDEFINED') }}]
-
-      ansible_user_id [{{ ansible_user_id }}]
-
-      mal_owner [{{ mal_owner }}]
-      mal_backup_conf [{{ mal_backup_conf }}]
-
-      mal_packages
-      {{ mal_packages|to_nice_yaml }}
-      mal_pip_requirements
-      {{ mal_pip_requirements|to_nice_yaml }}
-      mal_links
-      {{ mal_links|to_nice_yaml }}
-      mal_config
-      {{ mal_config|to_yaml }}
-
-      mal_source_install [{{ mal_source_install }}]
-      mal_source_version [{{ mal_source_version }}]
-      mal_source_checksum [{{ mal_source_checksum }}]
-      mal_source_file [{{ mal_source_file }}]
-      mal_source_dir [{{ mal_source_dir }}]
-      mal_source_url [{{ mal_source_url }}]
-      mal_source_dest [{{ mal_source_dest }}]
-      mal_source_dest_mode [{{ mal_source_dest_mode }}]
+      mal_sanity: {{ mal_sanity }}
+      mal_sanity_pip_owner_defined: {{ mal_sanity_pip_owner_defined }}
+      mal_sanity_pip_exists: {{ mal_sanity_pip_exists }}
+      mal_pip_install: {{ mal_pip_install }}
+      mal_pip_executable: {{ mal_pip_executable }}
+      mal_pip_python_version: {{ mal_pip_python_version }}
+      mal_pip_python_version_major: {{ mal_pip_python_version_major }}
+      mal_pip_python_version_minor: {{ mal_pip_python_version_minor }}
+      mal_pip_extraagrs: {{ mal_pip_extraagrs|default('UNDEFINED') }}
+      mal_owner: {{ mal_owner }}
+      mal_backup_conf: {{ mal_backup_conf }}
+      mal_pkg_install: {{ mal_pkg_install }}
+      mal_packages:
+        {{ mal_packages|to_nice_yaml(indent=2)|indent(2) }}
+      mal_pip_requirements:
+        {{ mal_pip_requirements|to_nice_yaml(indent=2)|indent(2) }}
+      mal_links:
+        {{ mal_links|to_nice_yaml(indent=2)|indent(2) }}
+      mal_config:
+        {{ mal_config|to_yaml(indent=2)|indent(2) }}
+      mal_source_install: {{ mal_source_install }}
+      mal_source_version: {{ mal_source_version }}
+      mal_source_checksum: {{ mal_source_checksum }}
+      mal_source_file: {{ mal_source_file }}
+      mal_source_dir: {{ mal_source_dir }}
+      mal_source_url: {{ mal_source_url }}
+      mal_source_dest: {{ mal_source_dest }}
+      mal_source_dest_mode: {{ mal_source_dest_mode }}
 
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"

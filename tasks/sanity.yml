@@ -1,15 +1,21 @@
 ---
 
+- name: "sanity: Test mal_owner is defined"
+  ansible.builtin.assert:
+    that: mal_owner is defined
+    fail_msg: "[ERROR] Variable mal_owner not defined."
+  when: mal_sanity_pip_owner_defined|bool
+
 - name: "sanity: Test {{ mal_pip_executable }} exists"
   block:
     - name: "sanity: Stat {{ mal_pip_executable }}"
       ansible.builtin.stat:
         path: "{{ mal_pip_executable }}"
       register: result
-    - name: "sanity: Fail. Not exists {{ mal_pip_executable }}"
-      ansible.builtin.fail:
-        msg: "Failed. {{ mal_pip_executable }} does not exist."
-      when: not result.stat.exists
+    - name: "sanity: Test {{ mal_pip_executable }} exists"
+      ansible.builtin.assert:
+        that: result.stat.exists
+        fail_msg: "[ERROR] {{ mal_pip_executable }} not exist."
   when: mal_sanity_pip_exists|bool
 
 # [TODO]
