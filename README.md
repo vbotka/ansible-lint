@@ -15,6 +15,10 @@ This role has been developed and tested with
 * [Ubuntu Supported Releases](http://releases.ubuntu.com/)
 * [FreeBSD Supported Production Releases](https://www.freebsd.org/releases/)
 
+This may be different from the platforms in Ansible Galaxy which does
+not offer all released versions in time and would report an error. For
+example: `IMPORTER101: Invalid platform: "FreeBSD-13.2", skipping.`
+
 
 ## Requirements and dependencies
 
@@ -38,22 +42,18 @@ This role has been developed and tested with
 
 ### Variables
 
-- The OS specific packages will be installed if you set
+- See *tasks/packages.yml*. The OS specific packages will be installed if you set
 
 ```
 mal_pkg_install: true
-```
-
-- Instead, you can use *pip* to install *ansible-lint* on Linux if you set
-
-```
-mal_pip_install: true
-```
-
-- Use packages, or ports to install *ansible-lint* on FreeBSD and set
-
-```
 mal_pip_install: false
+```
+
+- See *tasks/pip.yml*. Instead, you can use *pip* to install *ansible-lint* on Linux if you set
+
+```
+mal_pkg_install: false
+mal_pip_install: true
 ```
 
 - When installing by pip, set variable *mal_owner* to the user who will own the packages installed by pip
@@ -77,13 +77,30 @@ pip:
   name: ...
 ```
 
-See *tasks/packages.yml*
+### WARNING: Do not manage system site-packages with pip
+
+By default the pip arguments are set
+
+```yaml
+mal_pip_extraagrs: '--user --upgrade'
+```
+
+See [Conclusions. The pip module isn't always idempotent #28952](https://github.com/ansible/ansible/issues/28952):
+
+  Managing system site-packages with Pip is not a good idea and will
+  probably break your OS. Those should be solely managed by the OS
+  package manager (apt/yum/dnf/etc.). If you want to manage env for
+  some software in Python, better use a virtualenv technology.
+
+
+### Download source
 
 To download tarball from GitHub, extract and link it set
 
 ```
 mal_source_install: true
 ```
+
 
 ## References
 

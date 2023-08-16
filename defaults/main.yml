@@ -7,6 +7,7 @@ mal_debug: false
 mal_backup_conf: false
 
 mal_supported_linux_family: ['RedHat', 'Debian']
+mal_pip_extraagrs: '--user --upgrade'
 
 # Sanity
 mal_sanity: true
@@ -27,7 +28,6 @@ linux_install_delay: 5
 # Python
 pip_install_retries: 10
 pip_install_delay: 5
-# mal_pip_extraagrs: '--user'
 
 # Config
 mal_config: []

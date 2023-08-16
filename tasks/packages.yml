@@ -79,8 +79,7 @@
             {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
           ansible_failed_result:
             {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
-  when:
-    - ansible_os_family in mal_supported_linux_family
+  when: ansible_os_family in mal_supported_linux_family
 
 # EOF
 ...
