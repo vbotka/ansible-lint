@@ -6,6 +6,8 @@ mal_pip_install: false
 mal_debug: false
 mal_backup_conf: false
 
+mal_supported_linux_family: ['RedHat', 'Debian']
+
 # Sanity
 mal_sanity: true
 mal_sanity_pip_owner_defined: "{{ mal_pip_install }}"
