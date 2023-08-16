@@ -3,13 +3,15 @@
 # TODO: Still open?
 # pip module always set to changed when using check mode #62826
 # https://github.com/ansible/ansible/issues/62826
+
 - name: "pip: Debug check mode"
   ansible.builtin.debug:
-    msg: Module pip does not support check mode. Skipping.
+    msg: Module pip does not support check mode (#62826). Skipping.
   when: ansible_check_mode
 
 - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
   block:
+
     - name: "pip: Install Ansible Lint pip packages for {{ mal_owner }}"
       become_user: "{{ mal_owner }}"
       become: true
@@ -24,18 +26,28 @@
       until: result is succeeded
       retries: "{{ pip_install_retries }}"
       delay: "{{ pip_install_delay }}"
+
     - name: "pip: Debug pip packages"
       ansible.builtin.debug:
         var: result
       when: mal_debug|bool
+
   rescue:
+
     - name: "pip: Rescue pip packages"
       ansible.builtin.fail:
-        msg: "Failed. {{ result }}"
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+
   when: not ansible_check_mode
 
 - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
   block:
+
     - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
       become_user: "{{ mal_owner }}"
       become: true
@@ -49,14 +61,23 @@
       retries: "{{ pip_install_retries }}"
       delay: "{{ pip_install_delay }}"
       when: mal_pip_requirements|length > 0
+
     - name: "pip: Debug pip requirements"
       ansible.builtin.debug:
         var: result
       when: mal_debug|bool
+
   rescue:
+
     - name: "pip: Rescue pip requirements"
       ansible.builtin.fail:
-        msg: "Failed. {{ result }}"
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+
   when: not ansible_check_mode
 
 # EOF
