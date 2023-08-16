@@ -31,7 +31,12 @@
   rescue:
     - name: "pip: Rescue pip packages"
       ansible.builtin.fail:
-        msg: "Failed. {{ result }}"
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
   when: not ansible_check_mode
 
 - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
@@ -56,7 +61,12 @@
   rescue:
     - name: "pip: Rescue pip requirements"
       ansible.builtin.fail:
-        msg: "Failed. {{ result }}"
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
   when: not ansible_check_mode
 
 # EOF
