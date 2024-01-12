@@ -61,12 +61,12 @@ mal_pip_install: true
 mal_owner: admin
 ```
 
-When undefined, the variable *mal_owner* will be set to
-*ansible_user_id* if defined. The existence of the variable
-*mal_owner* is tested by sanity.
+When undefined, not escalated *setup* (become=false) will gather
+subset *user* and the variable *mal_owner* will be set. See
+tasks/vars.yml
 
 ```yaml
-mal_owner: "{{ ansible_user_id }}"
+mal_owner: "{{ ansible_user|default(ansible_user_id) }}"
 ```
 
 The *pip* installation task will run
@@ -83,7 +83,7 @@ pip:
 By default the pip arguments are set
 
 ```yaml
-mal_pip_extraagrs: '--user --upgrade'
+mal_pip_extraagrs: --user --upgrade
 ```
 
 See [Conclusions. The pip module isn't always idempotent #28952](https://github.com/ansible/ansible/issues/28952):
@@ -96,10 +96,25 @@ See [Conclusions. The pip module isn't always idempotent #28952](https://github.
 
 ### Download source
 
-To download tarball from GitHub, extract and link it set
+To download a tarball from GitHub, extract, and link it set
 
 ```yaml
 mal_source_install: true
+```
+
+Optionally, set the version and clear the checksum
+
+```yaml
+mal_source_version: '6.22.0'
+mal_source_checksum: ''
+```
+
+Download the archive manually, calculate, and set the checksum to
+speedup repeating downloads of this version
+
+```yaml
+mal_source_version: '6.22.0'
+mal_source_checksum: 'sha1:3a272ad7746edc7dd2493b695b0a0f378efbe335'
 ```
 
 

@@ -10,15 +10,15 @@
   when: mal_debug|bool
   tags: mal_debug
 
-- name: Import packages.yml
-  ansible.builtin.import_tasks: packages.yml
-  when: mal_pkg_install|bool
-  tags: mal_packages
-
 - name: Import sanity.yml
   ansible.builtin.import_tasks: sanity.yml
   when: mal_sanity|bool
   tags: mal_sanity
+
+- name: Import packages.yml
+  ansible.builtin.import_tasks: packages.yml
+  when: mal_pkg_install|bool
+  tags: mal_packages
 
 - name: Import pip.yml
   ansible.builtin.import_tasks: pip.yml

@@ -1,5 +1,5 @@
 ---
-# defaults for ansible_lint
+# defaults ansible_lint
 
 mal_pkg_install: false
 mal_pip_install: false
@@ -7,49 +7,53 @@ mal_debug: false
 mal_backup_conf: false
 
 mal_supported_linux_family: ['RedHat', 'Debian']
-mal_pip_extraagrs: '--user --upgrade'
+mal_pip_extraagrs: --user --upgrade
 
 # Sanity
 mal_sanity: true
+# Test mal_pip_install and mal_pkg_install are mutually exclusive
+mal_sanity_pip_exclusive: true
+# Test mal_owner is defined
 mal_sanity_pip_owner_defined: "{{ mal_pip_install }}"
+# Test mal_pip_executable exists
 mal_sanity_pip_exists: "{{ mal_pip_install }}"
 
 # FreeBSD
-freebsd_install_retries: 10
-freebsd_install_delay: 5
+freebsd_install_retries: 3
+freebsd_install_delay: 10
 freebsd_install_method: packages
 # freebsd_install_method: ports
 freebsd_use_packages: true
 
 # Linux
-linux_install_retries: 10
-linux_install_delay: 5
+linux_install_retries: 3
+linux_install_delay: 10
 
-# Python
-pip_install_retries: 10
-pip_install_delay: 5
+# pip
+pip_install_retries: 3
+pip_install_delay: 10
 
 # Config
 mal_config: []
 
-# Source
-mal_source_install: false
-mal_source_version: '6.17.2'
-mal_source_checksum: 'sha1:5effaba81091ddf2adaf34a431a2c88909541180'
-mal_source_file: "v{{ mal_source_version }}.tar.gz"
-mal_source_dir: "ansible-lint-{{ mal_source_version }}"
-mal_source_url: 'https://github.com/ansible/ansible-lint/archive'
-mal_source_dest: /usr/local/src
-mal_source_dest_mode: '0755'
-
 # Links
 mal_links: []
 
+# Source
+mal_source_install: false
+mal_source_version: '6.22.1'
+mal_source_checksum: 'sha1:6ffd337b69d30084ca239a33eac083d91669f4dc'
+mal_source_file: "v{{ mal_source_version }}.tar.gz"
+mal_source_dir: "ansible-lint-{{ mal_source_version }}"
+mal_source_url: 'https://github.com/ansible/ansible-lint/archive/refs/tags'
+mal_source_dest: /usr/local/src
+mal_source_dest_mode: '0755'
+
 # Override OS specific variables. See tasks/vars.yml
+# mal_packages_override:
+#   - ansible-lint-devel
 # mal_pip_executable_override: /usr/bin/pip4
-# mal_pip_packages_override:
-# - name: ansible-lint-devel
-# mal_pip_requirements: []
+# mal_pip_requirements_override: ''
 
 # EOF
 ...

@@ -1,7 +1,8 @@
 ---
 
-- name: "links: Create directories for links"
+- name: Create directories for links
   block:
+
     - name: "links: Create directories for links"
       ansible.builtin.file:
         state: directory
@@ -11,7 +12,9 @@
       loop: "{{ mal_links }}"
       loop_control:
         label: "{{ item.dest|dirname }}"
+
   rescue:
+
     - name: "links: Rescue create directories for links"
       ansible.builtin.fail:
         msg: |
@@ -21,8 +24,9 @@
           ansible_failed_result:
             {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
 
-- name: "links: Create links"
+- name: Create links
   block:
+
     - name: "links: Create links"
       ansible.builtin.file:
         state: link
@@ -31,7 +35,9 @@
         force: "{{ item.force|default(false) }}"
       register: result
       loop: "{{ mal_links }}"
+
   rescue:
+
     - name: "links: Rescue create links"
       ansible.builtin.fail:
         msg: |
