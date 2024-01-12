@@ -1,47 +1,46 @@
 ---
 # vars for ansible_lint
 
-# mal_pkg_install: false
-# mal_pip_install: true
-# mal_debug: false
-# mal_backup_conf: false
+mal_pkg_install: false
+mal_pip_install: true
+mal_debug: false
+mal_backup_conf: false
 
-# mal_pip_executable_override: /usr/bin/pip3
-# mal_owner: admin
-# my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-# my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
+mal_pip_executable_override: /usr/bin/pip3
+mal_owner: admin
+my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
 
-# mal_links:
-#   - src: "/home/{{ mal_owner }}/.local/lib/python{{ mal_pip_python_version }}/site-packages/ansiblelint/rules/"
-#     dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
-#     force: true
+mal_links:
+  - src: "/home/{{ mal_owner }}/.local/lib/python{{ ansible_python_version|splitext|first }}/site-packages/ansiblelint/rules/"
+    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+    force: true
 
-# mal_rulesdir:
-#   - "{{ my_mal_rules_dir }}"
-# mal_exclude_paths: []
-# mal_skip_list: []
-# mal_tags: []
+mal_rulesdir:
+  - "{{ my_mal_rules_dir }}"
+mal_exclude_paths: []
+mal_skip_list: []
+mal_tags: []
 
-# mal_config:
-#   - path: "{{ my_mal_config_path }}"
-#     template: ansible-lint-default.j2
-#     owner: "{{ mal_owner }}"
-#     group: "{{ mal_owner }}"
-#     mode: '0644'
-#     config:
-#       verbosity: 1
-#       quiet: false
-#       parseable: true
-#       use_default_rules: true
-#       rulesdir: "{{ mal_rulesdir }}"
-#       exclude_paths: "{{ mal_exclude_paths }}"
-#       skip_list: "{{ mal_skip_list }}"
-#       tags: "{{ mal_tags }}"
+mal_config:
+  - path: "{{ my_mal_config_path }}"
+    template: ansible-lint-default.j2
+    owner: "{{ mal_owner }}"
+    group: "{{ mal_owner }}"
+    mode: '0644'
+    config:
+      verbosity: 1
+      quiet: 'false'
+      parseable: 'true'
+      use_default_rules: 'true'
+      rulesdir: "{{ mal_rulesdir }}"
+      exclude_paths: "{{ mal_exclude_paths }}"
+      skip_list: "{{ mal_skip_list }}"
+      tags: "{{ mal_tags }}"
 
-# mal_source_install: true
-# mal_source_version: "5.0.11"
-# mal_source_checksum: "sha1:5e6c9ccf47a492652750b969b983202bc2ba1691"
-
+mal_source_install: true
+mal_source_version: '6.22.0'
+mal_source_checksum: 'sha1:3a272ad7746edc7dd2493b695b0a0f378efbe335'
 
 # EOF
 ...

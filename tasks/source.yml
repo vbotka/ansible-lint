@@ -11,7 +11,7 @@
   ansible.builtin.get_url:
     url: "{{ mal_source_url }}/{{ mal_source_file }}"
     dest: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
-    checksum: "{{ mal_source_checksum }}"
+    checksum: "{{ mal_source_checksum|d(omit, true) }}"
   tags: mal_source_fetch
 
 - name: "source: Stat {{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"

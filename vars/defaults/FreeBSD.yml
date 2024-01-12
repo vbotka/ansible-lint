@@ -1,10 +1,16 @@
 ---
-# FreeBSD vars defaults for ansible_lint
+# FreeBSD vars/defaults for ansible_runner
 
-mal_pip_executable: /usr/local/bin/pip-3.8
-mal_packages:
-  - name: sysutils/py-ansible-lint
-mal_pip_requirements: []
+mal_pip_executable: "/usr/local/bin/pip-{{ ansible_python_version|splitext|first }}"
+
+mal_packages_bsd:
+  - sysutils/py-ansible-lint
+mal_packages_pip:
+  - ansible-lint
+mal_packages: "{{ mal_pip_install|ternary(mal_packages_pip, mal_packages_bsd) }}"
+
+# Path to a pip requirements file local to the remote system
+mal_pip_requirements: ''
 
 # EOF
 ...

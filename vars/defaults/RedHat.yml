@@ -1,10 +1,20 @@
 ---
-# RedHat vars for ansible_lint
+# RedHat vars/defaults for ansible_lint
 
 mal_pip_executable: /usr/bin/pip3
-mal_packages:
-  - name: python-ansible-lint
-mal_pip_requirements: []
+
+mal_packages_rh:
+  - python-ansible-runner
+mal_packages_pip:
+  - ansible-runner
+mal_packages: "{{ mal_pip_install|ternary(mal_packages_pip, mal_packages_rh) }}"
+
+mal_pip_requirements: ''
+
+# mal_links:
+#   - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
+#     dest: "/home/{{ mal_owner }}/bin/ansible-lint"
+#     force: true
 
 # EOF
 ...

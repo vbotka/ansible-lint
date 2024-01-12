@@ -14,12 +14,27 @@ Ansible 2.16 update.
 
 Major Changes
 -------------
- 
+* The variable mal_packages changed to a plain list.
+* Update tasks/packages.yml
+* Update tasks/pip.yml; Muted pip always reporting changed in check
+  mode.
+* Update tasks/vars.yml; Robust defaults of mal_owner
+* Update vars/defaults; Set mal_packages according mal_pip_install
+* Sanity checking mal_owner and mal_pip_executable limited to
+  mal_pip_install
+* Add sanity check mal_pip_install and mal_pkg_install are mutually
+  exclusive
+
 Minor Changes
 -------------
-  
+* Update README
+* Update defaults retries/delay to 10/3
+* Update debug formatting. Add new variables.
+
 Bugfixes
 --------
+* Fix mal_pip_requirements is path to a pip requirements file.
 
 Breaking Changes / Porting Guide
 --------------------------------
+* Change the structure of mal_packages to a plain list.

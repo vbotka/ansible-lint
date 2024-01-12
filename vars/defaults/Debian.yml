@@ -2,9 +2,17 @@
 # Debian vars/defaults for ansible_lint
 
 mal_pip_executable: /usr/bin/pip3
+
 mal_packages:
-  - name: ansible-lint
-mal_pip_requirements: []
+  - ansible-lint
+
+# Path to a pip requirements file local to the remote system
+mal_pip_requirements: ''
+
+# mal_links:
+#   - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
+#     dest: "/home/{{ mal_owner }}/bin/ansible-lint"
+#     force: true
 
 # EOF
 ...
