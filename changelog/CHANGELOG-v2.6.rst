@@ -10,13 +10,14 @@ vbotka.ansible_lint 2.6 Release Notes
 
 Release Summary
 ---------------
-Bugfixing
+Bugfixing and examples.
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
+* Add vars/examples
 
 Bugfixes
 --------

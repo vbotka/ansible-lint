@@ -1,0 +1,47 @@
+---
+
+my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
+
+mal_owner: admin
+
+mal_pkg_install: false
+mal_pip_install: true
+mal_debug: false
+mal_backup_conf: true
+
+mal_pip_executable_override: /usr/bin/pip3
+mal_pip_extraagrs: --user --upgrade
+
+mal_links:
+  - src: "/home/{{ mal_owner }}/.local/lib/python{{ ansible_python_version|splitext|first }}/site-packages/ansiblelint/rules"
+    dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+    dir_mode: '0700'
+    force: true
+
+mal_rulesdir:
+  - "{{ my_mal_rules_dir }}"
+mal_exclude_paths: []
+mal_skip_list: []
+mal_tags: []
+
+mal_config:
+  - path: "{{ my_mal_config_path }}"
+    template: ansible-lint-default.j2
+    owner: "{{ mal_owner }}"
+    group: "{{ mal_owner }}"
+    mode: '0644'
+    config:
+      verbosity: 1
+      quiet: false
+      parseable: true
+      use_default_rules: true
+      rulesdir: "{{ mal_rulesdir }}"
+      exclude_paths: "{{ mal_exclude_paths }}"
+      skip_list: "{{ mal_skip_list }}"
+      tags: "{{ mal_tags }}"
+
+mal_source_install: true
+
+# EOF
+...
