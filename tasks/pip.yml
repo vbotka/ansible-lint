@@ -12,7 +12,7 @@
 - name: Install Ansible Lint PyPI packages for mal_owner
   block:
 
-    - name: "pip: Install Ansible Lint PyPI packages for {{ mal_owner }}"
+    - name: "Pip: Install Ansible Lint PyPI packages for {{ mal_owner }}"
       become_user: "{{ mal_owner }}"
       become: true
       changed_when:
@@ -21,35 +21,35 @@
       ansible.builtin.pip:
         name: "{{ item }}"
         executable: "{{ mal_pip_executable }}"
-        extra_args: "{{ mal_pip_extraagrs|default(omit) }}"
-        version: "{{ item.version|default(omit) }}"
-        state: "{{ item.state|default(omit) }}"
+        extra_args: "{{ mal_pip_extraagrs | default(omit) }}"
+        version: "{{ item.version | default(omit) }}"
+        state: "{{ item.state | default(omit) }}"
       loop: "{{ mal_packages }}"
       register: result
       until: result is succeeded
       retries: "{{ pip_install_retries }}"
       delay: "{{ pip_install_delay }}"
 
-    - name: "pip: Debug PyPI packages"
+    - name: "Pip: Debug PyPI packages"
       ansible.builtin.debug:
         var: result
       when: mal_debug|bool or ansible_check_mode
 
   rescue:
 
-    - name: "pip: Rescue PyPI packages"
+    - name: "Pip: Rescue PyPI packages"
       ansible.builtin.fail:
         msg: |
           [ERROR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
 - name: Install Ansible Lint PyPI requirements for mal_owner
   block:
 
-    - name: "pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
+    - name: "Pip: Install Ansible Lint pip requirements for {{ mal_owner }}"
       become_user: "{{ mal_owner }}"
       become: true
       changed_when:
@@ -58,28 +58,28 @@
       ansible.builtin.pip:
         requirements: "{{ mal_pip_requirements }}"
         executable: "{{ mal_pip_executable }}"
-        extra_args: "{{ pip_extraagrs|default(omit) }}"
+        extra_args: "{{ pip_extraagrs | default(omit) }}"
       register: result
       until: result is succeeded
       retries: "{{ pip_install_retries }}"
       delay: "{{ pip_install_delay }}"
       when: mal_pip_requirements|length > 0
 
-    - name: "pip: Debug PyPI requirements"
+    - name: "Pip: Debug PyPI requirements"
       ansible.builtin.debug:
         var: result
       when: mal_debug|bool
 
   rescue:
 
-    - name: "pip: Rescue PyPI requirements"
+    - name: "Pip: Rescue PyPI requirements"
       ansible.builtin.fail:
         msg: |
           [ERROR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
 # EOF
 ...

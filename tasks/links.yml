@@ -1,51 +1,45 @@
 ---
-
 - name: Create directories for links
   block:
-
-    - name: "links: Create directories for links"
+    - name: "Links: Create directories for links"
       ansible.builtin.file:
         state: directory
-        dest: "{{ item.dest|dirname }}"
-        mode: "{{ item.dir_mode|default('0755') }}"
+        dest: "{{ item.dest | dirname }}"
+        mode: "{{ item.dir_mode | default('0755') }}"
       register: result
       loop: "{{ mal_links }}"
       loop_control:
-        label: "{{ item.dest|dirname }}"
+        label: "{{ item.dest | dirname }}"
 
   rescue:
-
-    - name: "links: Rescue create directories for links"
+    - name: "Links: Rescue create directories for links"
       ansible.builtin.fail:
         msg: |
           [ERROR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
 - name: Create links
   block:
-
-    - name: "links: Create links"
+    - name: "Links: Create links"
       ansible.builtin.file:
         state: link
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
-        force: "{{ item.force|default(false) }}"
+        force: "{{ item.force | default(false) }}"
       register: result
       loop: "{{ mal_links }}"
 
   rescue:
-
-    - name: "links: Rescue create links"
+    - name: "Links: Rescue create links"
       ansible.builtin.fail:
         msg: |
           [ERROR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
 # EOF
-...

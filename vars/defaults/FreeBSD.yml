@@ -1,7 +1,7 @@
 ---
 # FreeBSD vars/defaults for ansible_runner
 
-mal_pip_executable: "/usr/local/bin/pip-{{ ansible_python_version|splitext|first }}"
+mal_pip_executable: /usr/local/bin/pip-{{ ansible_python_version|splitext|first }}
 
 mal_packages_bsd:
   - sysutils/py-ansible-lint

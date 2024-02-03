@@ -1,47 +1,44 @@
 ---
-
 - name: Declare mal_owner when undefined
-  block:
+  when: mal_owner is undefined
 
-    - name: "vars: Get the user"
-      setup:
+  block:
+    - name: "Vars: Get the user"
+      ansible.builtin.setup:
         gather_subset: user
       become: false
 
-    - name: "vars: Debug user"
+    - name: "Vars: Debug user"
       ansible.builtin.debug:
         msg: |
-          ansible_user: {{ ansible_user|d('UDEFINED') }}
-          ansible_user_id: {{ ansible_user_id|d('UDEFINED') }}
+          ansible_user: {{ ansible_user | d('UDEFINED') }}
+          ansible_user_id: {{ ansible_user_id | d('UDEFINED') }}
       when: mal_debug|bool
 
-    - name: "vars: Declare mal_owner"
+    - name: "Vars: Declare mal_owner"
       ansible.builtin.set_fact:
-        mal_owner: "{{ ansible_user|d(ansible_user_id) }}"
+        mal_owner: "{{ ansible_user | d(ansible_user_id) }}"
 
-  when: mal_owner is undefined
-
-- name: "vars: Include OS vars"
+- name: "Vars: Include OS vars"
   ansible.builtin.include_role:
     name: vbotka.ansible_lib
     tasks_from: al_include_os_vars_path
   vars:
-    al_os_vars_path: "{{ ansible_parent_role_paths.0 }}"
+    al_os_vars_path: "{{ ansible_parent_role_paths.0 }}" # noqa: var-naming[no-role-prefix]
 
-- name: "vars: Override mal_packages"
+- name: "Vars: Override mal_packages"
   ansible.builtin.set_fact:
     mal_packages: "{{ mal_packages_override }}"
   when: mal_packages_override is defined
 
-- name: "vars: Override mal_pip_executable"
+- name: "Vars: Override mal_pip_executable"
   ansible.builtin.set_fact:
     mal_pip_executable: "{{ mal_pip_executable_override }}"
   when: mal_pip_executable_override is defined
 
-- name: "vars: Override mal_pip_requirements"
+- name: "Vars: Override mal_pip_requirements"
   ansible.builtin.set_fact:
     mal_pip_requirements: "{{ mal_pip_requirements_override }}"
   when: mal_pip_requirements_override is defined
 
 # EOF
-...
