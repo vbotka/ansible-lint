@@ -1,17 +1,16 @@
 ---
-
-- name: "config: Create directories for Ansible Lint configuration"
+- name: "Config: Create directories for Ansible Lint configuration"
   ansible.builtin.file:
     state: directory
-    dest: "{{ item.path|dirname }}"
-    mode: "{{ item.dir_mode|default('0700') }}"
+    dest: "{{ item.path | dirname }}"
+    mode: "{{ item.dir_mode | default('0700') }}"
   loop: "{{ mal_config }}"
   loop_control:
-    label: "{{ item.path|dirname }}"
+    label: "{{ item.path | dirname }}"
 
-- name: "config: Configure Ansible Lint"
+- name: "Config: Configure Ansible Lint"
   ansible.builtin.template:
-    src: "{{ item.template|default('ansible-lint-default.j2') }}"
+    src: "{{ item.template | default('ansible-lint-default.j2') }}"
     dest: "{{ item.path }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
@@ -22,4 +21,3 @@
     label: "{{ item.path }}"
 
 # EOF
-...

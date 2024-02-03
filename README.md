@@ -118,6 +118,17 @@ mal_source_checksum: 'sha1:3a272ad7746edc7dd2493b695b0a0f378efbe335'
 ```
 
 
+### Ansible lint
+
+Use the configuration file *.ansible-lint.local* when running
+*ansible-lint*. Some rules might be disabled and some warnings might
+be ignored. See the notes in the configuration file.
+
+```bash
+shell> ansible-lint -c .ansible-lint.local
+```
+
+
 ## References
 
 - [Ansible Lint](https://docs.ansible.com/ansible-lint/)

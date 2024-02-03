@@ -1,34 +1,34 @@
 ---
 
-- name: "sanity: Test mal_pip_install and mal_pkg_install mutually exclusive"
+- name: "Sanity: Test mal_pip_install and mal_pkg_install mutually exclusive"
   ansible.builtin.assert:
     that: not (mal_pip_install and mal_pkg_install)
-    fail_msg: "[ERROR] mal_pip_install and mal_pkg_install are mutually exclusive"
+    fail_msg: "[ERR] mal_pip_install and mal_pkg_install are mutually exclusive"
   when: mal_sanity_pip_exclusive|bool
 
-- name: "sanity: Test mal_owner is defined if mal_pip_install"
+- name: "Sanity: Test mal_owner is defined if mal_pip_install"
   ansible.builtin.assert:
     that: mal_owner is defined
-    fail_msg: "[ERROR] Variable mal_owner required for pip."
+    fail_msg: "[ERR] Variable mal_owner required for pip."
   when:
     - mal_sanity_pip_owner_defined|bool
     - mal_pip_install|bool
 
-- name: Test mal_pip_executable exists if mal_pip_install
+- name: If mal_pip_install test existence of {{ mal_pip_executable }}
+  when:
+    - mal_sanity_pip_exists|bool
+    - mal_pip_install|bool
   block:
 
-    - name: "sanity: Stat {{ mal_pip_executable }}"
+    - name: "Sanity: Stat {{ mal_pip_executable }}"
       ansible.builtin.stat:
         path: "{{ mal_pip_executable }}"
       register: result
 
-    - name: "sanity: Test {{ mal_pip_executable }} exists if mal_pip_install"
+    - name: "Sanity: If mal_pip_install test existence of {{ mal_pip_executable }}"
       ansible.builtin.assert:
         that: result.stat.exists
-        fail_msg: "[ERROR] {{ mal_pip_executable }} required for pip."
-  when:
-    - mal_sanity_pip_exists|bool
-    - mal_pip_install|bool
+        fail_msg: "[ERR] {{ mal_pip_executable }} required for pip."
 
 # [TODO]
 # when: mal_pip_install exist: python3-setuptools, python3-pip

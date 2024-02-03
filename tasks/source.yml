@@ -1,32 +1,33 @@
 ---
 
-- name: "source: Create directory {{ mal_source_dest }}"
+- name: "Source: Create directory {{ mal_source_dest }}"
   ansible.builtin.file:
     state: directory
     path: "{{ mal_source_dest }}"
     mode: "{{ mal_source_dest_mode }}"
   tags: mal_source_fetch
 
-- name: "source: Download {{ mal_source_url }}/{{ mal_source_file }}"
+- name: "Source: Download {{ mal_source_url ~ '/' ~ mal_source_file }}"
   ansible.builtin.get_url:
     url: "{{ mal_source_url }}/{{ mal_source_file }}"
     dest: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
-    checksum: "{{ mal_source_checksum|d(omit, true) }}"
+    mode: '0644'
+    checksum: "{{ mal_source_checksum | d(omit, true) }}"
   tags: mal_source_fetch
 
-- name: "source: Stat {{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
+- name: "Source: Stat {{ mal_source_dest ~ '/ansible-lint-' ~ mal_source_file }}"
   ansible.builtin.stat:
     path: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
   register: mal_source_fetched
   tags: mal_source_extract
 
-- name: "source: Debug mal_source_fetched"
+- name: "Source: Debug mal_source_fetched"
   ansible.builtin.debug:
     var: mal_source_fetched.stat.checksum
   when: mal_debug|bool
   tags: mal_source_extract
 
-- name: "source: Extract sources to {{ mal_source_dest }}"
+- name: "Source: Extract sources to {{ mal_source_dest }}"
   ansible.builtin.unarchive:
     src: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
     dest: "{{ mal_source_dest }}"
@@ -34,7 +35,7 @@
   when: mal_source_fetched.stat.exists
   tags: mal_source_extract
 
-- name: "source: Create symbolic links"
+- name: "Source: Create symbolic links"
   ansible.builtin.file:
     state: link
     src: "{{ mal_source_dest }}/{{ mal_source_dir }}"
