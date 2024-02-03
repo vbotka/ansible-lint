@@ -5,6 +5,14 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.3
+=====
+
+Release Summary
+---------------
+Update tests.
+
+
 2.6.2
 =====
 
