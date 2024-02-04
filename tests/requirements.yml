@@ -1,3 +1,5 @@
 ---
+roles:
+  - name: vbotka.ansible_lib
 collections:
-  - community.general
+  - name: community.general
