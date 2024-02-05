@@ -3,7 +3,7 @@
 - name: FreeBSD packages
   when:
     - ansible_os_family == 'FreeBSD'
-    - freebsd_install_method|lower == 'packages'
+    - freebsd_install_method | lower == 'packages'
   block:
 
     - name: "Packages: Install Ansible Lint FreeBSD packages"
@@ -17,14 +17,14 @@
     - name: "Packages: Debug FreeBSD packages"
       ansible.builtin.debug:
         var: result
-      when: mal_debug|bool
+      when: mal_debug | bool
 
   rescue:
 
     - name: "Packages: Rescue FreeBSD packages"
       ansible.builtin.fail:
         msg: |
-          [ERROR] task {{ ansible_failed_task.name }} failed.
+          [ERR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
             {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
@@ -33,7 +33,7 @@
 - name: FreeBSD ports
   when:
     - ansible_os_family == 'FreeBSD'
-    - freebsd_install_method|lower == 'ports'
+    - freebsd_install_method | lower == 'ports'
   block:
 
     - name: "Packages: Install Ansible Lint FreeBSD ports"
@@ -49,14 +49,14 @@
     - name: "Packages: Debug FreeBSD ports"
       ansible.builtin.debug:
         var: result
-      when: mal_debug|bool
+      when: mal_debug | bool
 
   rescue:
 
     - name: "Packages: Rescue FreeBSD ports"
       ansible.builtin.fail:
         msg: |
-          [ERROR] task {{ ansible_failed_task.name }} failed.
+          [ERR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
             {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
@@ -78,14 +78,14 @@
     - name: "Packages: Debug Linux packages"
       ansible.builtin.debug:
         var: result
-      when: mal_debug|bool
+      when: mal_debug | bool
 
   rescue:
 
     - name: "Packages: Rescue Linux packages"
       ansible.builtin.fail:
         msg: |
-          [ERROR] task {{ ansible_failed_task.name }} failed.
+          [ERR] task {{ ansible_failed_task.name }} failed.
           ansible_failed_task:
             {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:

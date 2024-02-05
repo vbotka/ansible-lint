@@ -11,7 +11,7 @@
   ansible.builtin.get_url:
     url: "{{ mal_source_url }}/{{ mal_source_file }}"
     dest: "{{ mal_source_dest }}/ansible-lint-{{ mal_source_file }}"
-    mode: '0644'
+    mode: "0644"
     checksum: "{{ mal_source_checksum | d(omit, true) }}"
   tags: mal_source_fetch
 
@@ -24,7 +24,7 @@
 - name: "Source: Debug mal_source_fetched"
   ansible.builtin.debug:
     var: mal_source_fetched.stat.checksum
-  when: mal_debug|bool
+  when: mal_debug | bool
   tags: mal_source_extract
 
 - name: "Source: Extract sources to {{ mal_source_dest }}"

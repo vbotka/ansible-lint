@@ -4,20 +4,20 @@
   ansible.builtin.assert:
     that: not (mal_pip_install and mal_pkg_install)
     fail_msg: "[ERR] mal_pip_install and mal_pkg_install are mutually exclusive"
-  when: mal_sanity_pip_exclusive|bool
+  when: mal_sanity_pip_exclusive | bool
 
 - name: "Sanity: Test mal_owner is defined if mal_pip_install"
   ansible.builtin.assert:
     that: mal_owner is defined
     fail_msg: "[ERR] Variable mal_owner required for pip."
   when:
-    - mal_sanity_pip_owner_defined|bool
-    - mal_pip_install|bool
+    - mal_sanity_pip_owner_defined | bool
+    - mal_pip_install | bool
 
 - name: If mal_pip_install test existence of {{ mal_pip_executable }}
   when:
-    - mal_sanity_pip_exists|bool
-    - mal_pip_install|bool
+    - mal_sanity_pip_exists | bool
+    - mal_pip_install | bool
   block:
 
     - name: "Sanity: Stat {{ mal_pip_executable }}"
