@@ -1,4 +1,5 @@
 ---
+
 - name: "Debug: Ansible Lint"
   vars:
     msg: |-
@@ -34,13 +35,13 @@
         {{ mal_packages | to_nice_yaml(indent=2) | indent(2) }}
       mal_owner: {{ mal_owner }}
       mal_pip_executable: {{ mal_pip_executable }}
-      mal_pip_extraagrs: {{ mal_pip_extraagrs | default('UNDEFINED') }}
+      mal_pip_extraagrs: {{ mal_pip_extraagrs | d('UNDEFINED') }}
       mal_pip_requirements: {{ mal_pip_requirements }}
       mal_links:
         {{ mal_links | to_nice_yaml(indent=2) | indent(2) }}
-      mal_packages_override: {{ mal_packages_override | default('UNDEFINED') }}
-      mal_pip_executable_override: {{ mal_pip_executable_override | default('UNDEFINED') }}
-      mal_pip_requirements_override: {{ mal_pip_requirements_override | default('UNDEFINED') }}
+      mal_packages_override: {{ mal_packages_override | d('UNDEFINED') }}
+      mal_pip_executable_override: {{ mal_pip_executable_override | d('UNDEFINED') }}
+      mal_pip_requirements_override: {{ mal_pip_requirements_override | d('UNDEFINED') }}
 
       mal_source_install: {{ mal_source_install }}
       mal_source_version: {{ mal_source_version }}
@@ -55,3 +56,4 @@
     msg: "{{ '{}'.format(msg) }}"
 
 # EOF
+...

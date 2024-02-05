@@ -1,8 +1,9 @@
 ---
+
 - name: Declare mal_owner when undefined
   when: mal_owner is undefined
-
   block:
+
     - name: "Vars: Get the user"
       ansible.builtin.setup:
         gather_subset: user
@@ -13,18 +14,18 @@
         msg: |
           ansible_user: {{ ansible_user | d('UDEFINED') }}
           ansible_user_id: {{ ansible_user_id | d('UDEFINED') }}
-      when: mal_debug|bool
+      when: mal_debug | bool
 
     - name: "Vars: Declare mal_owner"
       ansible.builtin.set_fact:
         mal_owner: "{{ ansible_user | d(ansible_user_id) }}"
 
 - name: "Vars: Include OS vars"
-  ansible.builtin.include_role:
+  ansible.builtin.include_role:  # noqa: var-naming[no-role-prefix]
     name: vbotka.ansible_lib
     tasks_from: al_include_os_vars_path
   vars:
-    al_os_vars_path: "{{ ansible_parent_role_paths.0 }}" # noqa: var-naming[no-role-prefix]
+    al_os_vars_path: "{{ ansible_parent_role_paths.0 }}"
 
 - name: "Vars: Override mal_packages"
   ansible.builtin.set_fact:
@@ -42,3 +43,4 @@
   when: mal_pip_requirements_override is defined
 
 # EOF
+...

@@ -7,27 +7,27 @@
 
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
-  when: mal_debug|bool
+  when: mal_debug | bool
   tags: mal_debug
 
 - name: Import sanity.yml
   ansible.builtin.import_tasks: sanity.yml
-  when: mal_sanity|bool
+  when: mal_sanity | bool
   tags: mal_sanity
 
 - name: Import packages.yml
   ansible.builtin.import_tasks: packages.yml
-  when: mal_pkg_install|bool
+  when: mal_pkg_install | bool
   tags: mal_packages
 
 - name: Import pip.yml
   ansible.builtin.import_tasks: pip.yml
-  when: mal_pip_install|bool
+  when: mal_pip_install | bool
   tags: mal_pip
 
 - name: Import source.yml
   ansible.builtin.import_tasks: source.yml
-  when: mal_source_install|bool
+  when: mal_source_install | bool
   tags: mal_source
 
 - name: Import links.yml
@@ -39,3 +39,4 @@
   tags: mal_config
 
 # EOF
+...

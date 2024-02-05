@@ -45,7 +45,7 @@ mal_source_file: v{{ mal_source_version }}.tar.gz
 mal_source_dir: ansible-lint-{{ mal_source_version }}
 mal_source_url: https://github.com/ansible/ansible-lint/archive/refs/tags
 mal_source_dest: /usr/local/src
-mal_source_dest_mode: '0755'
+mal_source_dest_mode: "0755"
 
 # Override OS specific variables. See tasks/vars.yml
 # mal_packages_override:
