@@ -5,6 +5,21 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.8
+=====
+
+Release Summary
+---------------
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Remove requirements.yml from root folder (See
+  github.com/ansible/ansible-lint/issues/3846)
+
+
 2.6.7
 =====
 
