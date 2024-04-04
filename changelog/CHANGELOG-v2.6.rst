@@ -18,7 +18,7 @@ Minor Changes
 -------------
 * Update README
 * travis.yml formatting
-
+* Add requirements.yml (See github.com/ansible/ansible-lint/issues/3846)
 
 2.6.6
 =====
