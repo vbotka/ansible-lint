@@ -1,10 +1,15 @@
 ---
 # Ubuntu vars for ansible_lint
 
-mal_pip_executable: /usr/bin/pip3
-
 mal_packages:
   - ansible-lint
+
+mal_virtualenv_command: python3 -m venv
+mal_virtualenv_packages:
+  - python3-venv
+  - python{{ ansible_python_version | splitext | first }}-venv
+
+mal_pip_executable: /usr/bin/pip3
 
 # Path to a pip requirements file local to the remote system
 mal_pip_requirements: ""

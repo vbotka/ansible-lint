@@ -1,18 +1,22 @@
 ---
 
-- name: "Sanity: Test mal_pip_install and mal_pkg_install mutually exclusive"
+- name: "Sanity: Test mal_pip_install, mal_pkg_install, and mal_venv_install are mutually exclusive"
   ansible.builtin.assert:
-    that: not (mal_pip_install and mal_pkg_install)
-    fail_msg: "[ERR] mal_pip_install and mal_pkg_install are mutually exclusive"
+    that: count|int < 2
+    fail_msg: "[ERR] mal_pip_install, mal_pkg_install, and mal_venv_install are mutually exclusive."
+  vars:
+    count: "{{ [mal_pip_install, mal_pkg_install, mal_venv_install] |
+               select |
+               length }}"
   when: mal_sanity_pip_exclusive | bool
 
-- name: "Sanity: Test mal_owner is defined if mal_pip_install"
+- name: "Sanity: Test mal_owner is defined if mal_pip_install or mal_venv_install"
   ansible.builtin.assert:
     that: mal_owner is defined
-    fail_msg: "[ERR] Variable mal_owner required for pip."
+    fail_msg: "[ERR] Variable mal_owner required for pip and venv."
   when:
     - mal_sanity_pip_owner_defined | bool
-    - mal_pip_install | bool
+    - mal_pip_install|bool or mal_venv_install|bool
 
 - name: If mal_pip_install test existence of {{ mal_pip_executable }}
   when:

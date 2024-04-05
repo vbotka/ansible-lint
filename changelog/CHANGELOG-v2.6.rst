@@ -5,6 +5,34 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.8
+=====
+
+Release Summary
+---------------
+Enable virtual environment.
+
+Major Changes
+-------------
+* Add tasks/venv.yml
+* Add variables mal_virtualenv_* (mal_virtualenv: $HOME/env)
+* Update tasks/sanity.yml (mal_pip_install, mal_pkg_install, and
+  mal_venv_install are mutually exclusive)
+* Add vars/examples
+* Move tasks/packagages.yml to tasks/fn/
+
+Minor Changes
+-------------
+* Remove requirements.yml from root folder (See
+  github.com/ansible/ansible-lint/issues/3846)
+* Update README
+
+Breaking Changes / Porting Guide
+--------------------------------
+* List of packages is not backward compatible. See variable
+  mal_pip_packages and mal_virtualenv_packages
+
+
 2.6.7
 =====
 
@@ -33,7 +61,7 @@ Formatting.
 
 Release Summary
 ---------------
-Fix dpendencies, tests, and Ansible lint.
+Fix dependencies, tests, and Ansible lint.
 
 
 2.6.4
@@ -65,7 +93,7 @@ Fix tests.
 
 Release Summary
 ---------------
-Bugfixing and examples.
+Bug fixing and examples.
 
 Major Changes
 -------------

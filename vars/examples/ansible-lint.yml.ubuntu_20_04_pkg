@@ -1,0 +1,74 @@
+---
+
+# my_variables
+my_mal_rules_dir: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+my_mal_config_path: "/home/{{ mal_owner }}/.ansible/.ansible-lint"
+
+mal_owner: admin
+
+mal_pkg_install: true
+mal_pip_install: false
+mal_venv_install: false
+
+mal_debug: false
+mal_backup_conf: true
+
+mal_pip_executable_override: /usr/bin/pip3
+mal_pip_extraagrs: --user --upgrade
+
+# links
+mal_links: []
+# - src: "/home/{{ mal_owner }}/.local/lib/python{{ ansible_python_version|splitext|first }}/site-packages/ansiblelint/rules"
+#   dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#   dir_mode: '0700'
+#   force: true
+# - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#   dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#   force: true
+# - src: "/home/{{ mal_owner }}/.local/lib/python3.7/site-packages/ansiblelint/rules"
+#   dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#   force: true
+# - src: "/usr/lib/python2.7/dist-packages/ansiblelint/rules"
+#   dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#   force: true
+# - src: "{{ mal_source_dest }}/ansible-lint/lib/ansiblelint/rules"
+#   dest: "/home/{{ mal_owner }}/.ansible/ansible-lint-rules"
+#   force: true
+# - src: "/home/{{ mal_owner }}/.local/bin/ansible-lint"
+#   dest: "/home/{{ mal_owner }}/bin/ansible-lint"
+#   force: true
+
+# config
+mal_rulesdir:
+  - "{{ my_mal_rules_dir }}"
+mal_exclude_paths: []
+mal_skip_list: []
+mal_tags: []
+
+mal_config:
+  - path: "{{ my_mal_config_path }}"
+    template: ansible-lint-default.j2
+    owner: "{{ mal_owner }}"
+    group: "{{ mal_owner }}"
+    mode: '0644'
+    config:
+      verbosity: 1
+      quiet: false
+      parseable: true
+      use_default_rules: true
+      rulesdir: "{{ mal_rulesdir }}"
+      exclude_paths: "{{ mal_exclude_paths }}"
+      skip_list: "{{ mal_skip_list }}"
+      tags: "{{ mal_tags }}"
+
+# source
+mal_source_install: true
+# mal_source_version: 4.3.0a4
+# mal_source_checksum: "sha1:0d7d1126a158a67ee995fb2f641614260ceed8a3"
+# mal_source_version: 4.1.1a0
+# mal_source_checksum: "sha1:e397883c8747053b4889fa35aed640daa81e02c5"
+# mal_source_version: 4.1.0
+# mal_source_checksum: "sha1:4b6a4b1ce7cd5fe1659b31d76ce182bc199123c2"
+
+# EOF
+...
