@@ -3,6 +3,11 @@
 
 mal_pkg_install: false
 mal_pip_install: false
+mal_venv_install: false
+
+mal_pip_packages:
+  - ansible-lint
+
 mal_debug: false
 mal_backup_conf: false
 
@@ -11,7 +16,7 @@ mal_pip_extraagrs: --user --upgrade
 
 # Sanity
 mal_sanity: true
-# Test mal_pip_install and mal_pkg_install are mutually exclusive
+# Test mal_pip_install, mal_venv_install, and mal_pkg_install are mutually exclusive
 mal_sanity_pip_exclusive: true
 # Test mal_owner is defined
 mal_sanity_pip_owner_defined: "{{ mal_pip_install }}"
@@ -32,6 +37,9 @@ linux_install_delay: 10
 # pip
 pip_install_retries: 3
 pip_install_delay: 10
+
+# venv
+mal_virtualenv: $HOME/env
 
 # Config
 mal_config: []

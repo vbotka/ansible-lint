@@ -24,7 +24,7 @@
         extra_args: "{{ mal_pip_extraagrs | d(omit) }}"
         version: "{{ item.version | d(omit) }}"
         state: "{{ item.state | d(omit) }}"
-      loop: "{{ mal_packages }}"
+      loop: "{{ mal_pip_packages }}"
       register: result
       until: result is succeeded
       retries: "{{ pip_install_retries }}"

@@ -25,6 +25,11 @@
   when: mal_pip_install | bool
   tags: mal_pip
 
+- name: Import venv.yml
+  ansible.builtin.import_tasks: venv.yml
+  when: mal_venv_install | bool
+  tags: mal_venv
+
 - name: Import source.yml
   ansible.builtin.import_tasks: source.yml
   when: mal_source_install | bool
