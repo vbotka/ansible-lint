@@ -5,6 +5,14 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.9
+=====
+
+Release Summary
+---------------
+Support FreeBSD 13.3 and 14.0
+
+
 2.6.8
 =====
 
