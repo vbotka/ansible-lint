@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* mal_virtualenv default not needed
 
 
 2.6.9
