@@ -18,7 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * mal_virtualenv default not needed
-
+* Import config.yml if mal_config not empty
 
 2.6.9
 =====
