@@ -1,6 +1,6 @@
 ---
 
-- name: "Debug: Ansible Lint mal_debug={{ mal_debug }}"
+- name: "Debug: Ansible Lint mal_debug={{ mal_debug | bool }}"
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
