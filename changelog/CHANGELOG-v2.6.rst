@@ -10,7 +10,7 @@ vbotka.ansible_lint 2.6 Release Notes
 
 Release Summary
 ---------------
-Bugfixes
+Feature update.
 
 Major Changes
 -------------
@@ -19,6 +19,12 @@ Minor Changes
 -------------
 * mal_virtualenv default not needed
 * Import config.yml if mal_config not empty
+
+Breaking Changes / Porting Guide
+--------------------------------
+* mal_pip_packages is a list of dictionaries
+  e.g. (- name: ansible-lint)
+
 
 2.6.9
 =====

@@ -6,7 +6,7 @@ mal_pip_install: false
 mal_venv_install: false
 
 mal_pip_packages:
-  - ansible-lint
+  - name: ansible-lint
 
 mal_debug: false
 mal_backup_conf: false
