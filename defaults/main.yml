@@ -5,6 +5,8 @@ mal_pkg_install: false
 mal_pip_install: false
 mal_venv_install: false
 
+mal_packages_state: present
+# mal_packages see vars/defaults
 mal_pip_packages_state: present
 mal_pip_packages:
   - name: ansible-lint

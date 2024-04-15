@@ -1,8 +1,9 @@
 ---
-# FreeBSD vars/defaults for ansible_runner
+# FreeBSD vars/defaults for ansible_lint
 
 mal_packages:
-  - sysutils/py-ansible-lint
+  - name: sysutils/py-ansible-lint
+    state: "{{ mal_packages_state }}"
 
 mal_virtualenv_command: python3 -m venv
 mal_virtualenv_packages: []

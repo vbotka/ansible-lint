@@ -47,8 +47,9 @@
       mal_virtualenv_packages:
         {{ mal_virtualenv_packages | to_nice_yaml(indent=2) | indent(2) }}
       mal_pkg_install: {{ mal_pkg_install }}
+      mal_packages_state: {{ mal_packages_state }}
       mal_packages:
-        {{ mal_packages | to_nice_yaml(indent=2) | indent(2) }}
+        {{ mal_packages | to_yaml(indent=2) | indent(2) }}
       mal_packages_override: {{ mal_packages_override | d('UNDEFINED') }}
       mal_links:
         {{ mal_links | to_nice_yaml(indent=2) | indent(2) }}

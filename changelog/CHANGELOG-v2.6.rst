@@ -23,8 +23,11 @@ Minor Changes
 Breaking Changes / Porting Guide
 --------------------------------
 * mal_pip_packages is a list of dictionaries
-  e.g. (- name: ansible-lint)
+  e.g. (- name: ansible-lint, state: present)
 * Add variable mal_pip_packages_state (default: present)
+* mal_packages is a list of dictionaries
+  e.g. (- name: ansible-lint, state: present)
+* Add variable mal_packages_state (default: present)
 
 
 2.6.9

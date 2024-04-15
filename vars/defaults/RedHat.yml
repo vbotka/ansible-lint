@@ -2,11 +2,13 @@
 # RedHat vars/defaults for ansible_lint
 
 mal_packages:
-  - python-ansible-lint
+  - name: python-ansible-lint
+    state: "{{ mal_packages_state }}"
 
 mal_virtualenv_command: python3 -m venv
 mal_virtualenv_packages:
-  - python3-venv
+  - name: python3-venv
+    state: "{{ mal_packages_state }}"
 
 mal_pip_executable: /usr/bin/pip3
 
