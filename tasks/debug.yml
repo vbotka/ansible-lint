@@ -36,8 +36,9 @@
       mal_pip_executable_override: {{ mal_pip_executable_override | d('UNDEFINED') }}
       mal_pip_requirements: {{ mal_pip_requirements }}
       mal_pip_requirements_override: {{ mal_pip_requirements_override | d('UNDEFINED') }}
+      mal_pip_packages_state: {{ mal_pip_packages_state }}
       mal_pip_packages:
-        {{ mal_pip_packages | to_nice_yaml(indent=2) | indent(2) }}
+        {{ mal_pip_packages | to_yaml(indent=2) | indent(2) }}
       mal_venv_install: {{ mal_venv_install }}
       mal_virtualenv: {{ mal_virtualenv }}
       mal_virtualenv_command: {{ mal_virtualenv_command | d('UNDEFINED') }}
