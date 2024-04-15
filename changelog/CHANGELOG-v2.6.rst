@@ -20,6 +20,7 @@ Minor Changes
 * mal_virtualenv default not needed
 * Import config.yml if mal_config not empty
 * Format debug name
+* Format debug mal_virtualenv_packages
 
 Breaking Changes / Porting Guide
 --------------------------------

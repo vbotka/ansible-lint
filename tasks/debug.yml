@@ -45,7 +45,7 @@
       mal_virtualenv_python: {{ mal_virtualenv_python | d('UNDEFINED') }}
       mal_virtualenv_site_packages: {{ mal_virtualenv_site_packages | d('UNDEFINED') }}
       mal_virtualenv_packages:
-        {{ mal_virtualenv_packages | to_nice_yaml(indent=2) | indent(2) }}
+        {{ mal_virtualenv_packages | to_yaml(indent=2) | indent(2) }}
       mal_pkg_install: {{ mal_pkg_install }}
       mal_packages_state: {{ mal_packages_state }}
       mal_packages:
