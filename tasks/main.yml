@@ -41,6 +41,7 @@
 
 - name: Import config.yml
   ansible.builtin.import_tasks: config.yml
+  when: mal_config | length > 0
   tags: mal_config
 
 # EOF

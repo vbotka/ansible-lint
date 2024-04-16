@@ -19,7 +19,7 @@
         - result.changed
         - not ansible_check_mode
       ansible.builtin.pip:
-        name: "{{ item }}"
+        name: "{{ item.name }}"
         executable: "{{ mal_pip_executable }}"
         extra_args: "{{ mal_pip_extraagrs | d(omit) }}"
         version: "{{ item.version | d(omit) }}"

@@ -2,12 +2,15 @@
 # Debian vars/defaults for ansible_lint
 
 mal_packages:
-  - ansible-lint
+  - name: ansible-lint
+    state: "{{ mal_packages_state }}"
 
 mal_virtualenv_command: python3 -m venv
 mal_virtualenv_packages:
-  - python3-venv
-  - python{{ ansible_python_version | splitext | first }}-venv
+  - name: python3-venv
+    state: "{{ mal_packages_state }}"
+  - name: python{{ ansible_python_version | splitext | first }}-venv
+    state: "{{ mal_packages_state }}"
 
 mal_pip_executable: /usr/bin/pip3
 
