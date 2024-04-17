@@ -37,6 +37,7 @@
 
 - name: Import links.yml
   ansible.builtin.import_tasks: links.yml
+  when: mal_links | length > 0
   tags: mal_links
 
 - name: Import config.yml

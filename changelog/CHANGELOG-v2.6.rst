@@ -18,6 +18,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Import links.yml if mal_links not empty
 
 
 2.6.10
