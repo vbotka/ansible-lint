@@ -5,6 +5,21 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.11
+======
+
+Release Summary
+---------------
+Feature update.
+
+Major Changes
+-------------
+* tasks/packages.yml renamed to tasks/pkg.yml
+
+Minor Changes
+-------------
+
+
 2.6.10
 ======
 
