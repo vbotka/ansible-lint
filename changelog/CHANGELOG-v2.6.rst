@@ -19,6 +19,7 @@ Major Changes
 Minor Changes
 -------------
 * Import links.yml if mal_links not empty
+* Fix README tag badge.
 
 
 2.6.10
