@@ -1,4 +1,4 @@
-# Ansible Lint
+# ansible_lint
 
 [![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/ansible_lint)[![Build Status](https://app.travis-ci.com/vbotka/ansible-lint.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-lint)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-lint)](https://github.com/vbotka/ansible-lint/tags)
 

@@ -20,6 +20,7 @@ Minor Changes
 -------------
 * Import links.yml if mal_links not empty
 * Fix README tag badge.
+* Fix README label.
 * Use default rules in local ansible-lint
 
 
