@@ -10,11 +10,12 @@ vbotka.ansible_lint 2.6 Release Notes
 
 Release Summary
 ---------------
-Feature update.
+Ansible 2.17 maintenance and feature update.
 
 Major Changes
 -------------
 * tasks/packages.yml renamed to tasks/pkg.yml
+* Add support FreeBSD 14.1
 
 Minor Changes
 -------------
