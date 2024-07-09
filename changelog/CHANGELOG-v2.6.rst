@@ -5,6 +5,27 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.11
+======
+
+Release Summary
+---------------
+Ansible 2.17 maintenance and feature update.
+
+Major Changes
+-------------
+* tasks/packages.yml renamed to tasks/pkg.yml
+* Add support FreeBSD 14.1
+
+Minor Changes
+-------------
+* Import links.yml if mal_links not empty
+* Fix README tag badge.
+* Fix README label.
+* Use default rules in local ansible-lint config.
+* Update skip_list in local ansible-lint config.
+
+
 2.6.10
 ======
 
