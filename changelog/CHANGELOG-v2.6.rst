@@ -4,6 +4,7 @@ vbotka.ansible_lint 2.6 Release Notes
 
 .. contents:: Topics
 # BEGIN Commits 2.6.12
+- Update
 - Format meta/main.yml
 - Start devel 2.6.12
 # END Commits 2.6.12
@@ -16,6 +17,10 @@ Major Changes
 -------------
 Minor Changes
 -------------
+- Update
+- Format meta/main.yml
+- Start devel 2.6.12
+
 Bugfixes
 --------
 Breaking Changes / Porting Guide
