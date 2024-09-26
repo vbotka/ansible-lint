@@ -3,6 +3,7 @@
 - name: "Debug: Ansible Lint mal_debug={{ mal_debug | bool }}"
   vars:
     msg: |-
+      mal_role_version: {{ mal_role_version }}
       ansible_architecture: {{ ansible_architecture }}
       ansible_os_family: {{ ansible_os_family }}
       ansible_distribution: {{ ansible_distribution }}

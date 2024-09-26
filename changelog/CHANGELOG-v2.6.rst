@@ -5,6 +5,22 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.12
+======
+
+Release Summary
+---------------
+Maintenance and update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Add variable mal_role_version
+* Update tasks/debug.yml
+
+
 2.6.11
 ======
 

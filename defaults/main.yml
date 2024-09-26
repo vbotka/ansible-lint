@@ -1,5 +1,6 @@
 ---
 # defaults ansible_lint
+mal_role_version: 2.6.12
 
 mal_pkg_install: false
 mal_pip_install: false
