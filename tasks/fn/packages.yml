@@ -16,10 +16,10 @@
       retries: "{{ freebsd_install_retries }}"
       delay: "{{ freebsd_install_delay }}"
 
-    - name: "Packages: Debug FreeBSD packages"
+    - name: "Packages: Debug FreeBSD packages mal_debug={{ mal_debug }}"
+      when: mal_debug | bool
       ansible.builtin.debug:
         var: result
-      when: mal_debug | bool
 
   rescue:
 
@@ -39,19 +39,19 @@
   block:
 
     - name: "Packages: Install Ansible Lint FreeBSD ports"
+      register: result
       community.general.portinstall:
         name: "{{ item.name }}"
         use_packages: "{{ freebsd_use_packages }}"
       loop: "{{ mal_packages_incl }}"
-      register: result
       until: result is succeeded
       retries: "{{ freebsd_install_retries }}"
       delay: "{{ freebsd_install_delay }}"
 
-    - name: "Packages: Debug FreeBSD ports"
+    - name: "Packages: Debug FreeBSD ports mal_debug={{ mal_debug }}"
+      when: mal_debug | bool
       ansible.builtin.debug:
         var: result
-      when: mal_debug | bool
 
   rescue:
 
@@ -69,19 +69,19 @@
   block:
 
     - name: "Packages: Install Ansible Lint Linux packages"
+      register: result
       ansible.builtin.package:
         name: "{{ item.name }}"
         state: "{{ item.state | d(omit) }}"
       loop: "{{ mal_packages_incl }}"
-      register: result
       until: result is succeeded
       retries: "{{ linux_install_retries }}"
       delay: "{{ linux_install_delay }}"
 
-    - name: "Packages: Debug Linux packages"
+    - name: "Packages: Debug Linux packages mal_debug={{ mal_debug }}"
+      when: mal_debug | bool
       ansible.builtin.debug:
         var: result
-      when: mal_debug | bool
 
   rescue:
 
@@ -95,4 +95,3 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
 # EOF
-...
