@@ -67,4 +67,3 @@
     msg: "{{ '{}'.format(msg) }}"
 
 # EOF
-...

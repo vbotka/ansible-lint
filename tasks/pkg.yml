@@ -6,4 +6,3 @@
     mal_packages_incl: "{{ mal_packages }}"
 
 # EOF
-...

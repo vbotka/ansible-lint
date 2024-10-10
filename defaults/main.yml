@@ -1,6 +1,6 @@
 ---
 # defaults ansible_lint
-mal_role_version: 2.6.12
+mal_role_version: 2.6.13
 
 mal_pkg_install: false
 mal_pip_install: false
@@ -52,8 +52,8 @@ mal_config: []
 mal_links: []
 # Source
 mal_source_install: false
-mal_source_version: 6.22.1
-mal_source_checksum: sha1:f2e97769afb8d3c7f4c0aa1ca19916e53447e8f9
+mal_source_version: 24.9.2
+mal_source_checksum: sha1:21e5550bee6a14048786a4ea507048736020dd17
 mal_source_file: v{{ mal_source_version }}.tar.gz
 mal_source_dir: ansible-lint-{{ mal_source_version }}
 mal_source_url: https://github.com/ansible/ansible-lint/archive/refs/tags

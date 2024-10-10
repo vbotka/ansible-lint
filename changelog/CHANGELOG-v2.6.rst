@@ -5,6 +5,23 @@ vbotka.ansible_lint 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.13
+======
+
+Release Summary
+---------------
+Maintenance and update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Tasks formatting improved.
+* Fix environment: CRYPTOGRAPHY_OPENSSL_NO_LEGACY: '1'
+* Update to source version 6.22.1
+
+
 2.6.12
 ======
 
