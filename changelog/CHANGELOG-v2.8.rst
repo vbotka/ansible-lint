@@ -14,9 +14,11 @@ Upgrade to Ansible 2.20
 
 Major Changes
 -------------
+* Upgrade to Ansible 2.20
 
 Minor Changes
 -------------
+* Convert ansible_* variables to ansible_facts
 
 Bugfixes
 --------

@@ -14,11 +14,11 @@
       ansible.builtin.debug:
         msg: |
           ansible_user: {{ ansible_user | d('UDEFINED') }}
-          ansible_user_id: {{ ansible_user_id | d('UDEFINED') }}
+          ansible_user_id: {{ ansible_facts['user_id'] | d('UDEFINED') }}
 
     - name: "Vars: Declare mal_owner"
       ansible.builtin.set_fact:
-        mal_owner: "{{ ansible_user | d(ansible_user_id) }}"
+        mal_owner: "{{ ansible_user | d(ansible_facts['user_id']) }}"
 
 - name: "Vars: Include OS vars"
   vars:
